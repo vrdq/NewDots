@@ -28,9 +28,9 @@
     
     "modules-right": [
         "cpu", 
-        "network",
         "memory", 
         "temperature",
+        "network",
         "custom/separator",
         "battery",
         "custom/separator-2",
