@@ -206,9 +206,9 @@
     "cpu": {
         "format": " {usage}%",
         "interval": 2,
-        "on-click": "dusky-run kitty --class htop -e htop",
+        "on-click": "dusky-run kitty --class btop -e btop",
         "on-click-right": "dusky-run kitty --class sysbench_benchmark.py -e $HOME/user_scripts/performance/sysbench_benchmark.py",
-        "tooltip-format": "CPU Usage: {usage}%\nAvg Frequency: {avg_frequency} GHz\n\nLMB: htop\nRMB: sysbench",
+        "tooltip-format": "CPU Usage: {usage}%\nAvg Frequency: {avg_frequency} GHz\n\nLMB: btop\nRMB: sysbench",
         "states": {
             "warning": 60,
             "critical": 80
