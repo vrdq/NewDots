@@ -27,10 +27,10 @@
     ],
     
     "modules-right": [
+        "network",
         "cpu", 
         "memory", 
         "temperature",
-        "network",
         "custom/separator",
         "battery",
         "custom/separator-2",
