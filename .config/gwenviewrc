@@ -1,0 +1,37 @@
+[General]
+BirdEyeViewEnabled=false
+LastUsedVersion=210800
+SideBarPage=operations
+
+[MainWindow]
+MenuBar=Disabled
+
+[Recent Files]
+File1[$e]=$HOME/Pictures/Screenshots/screenshot_2026-10-02_23-36-44.png
+File10[$e]=$HOME/Downloads/1.png
+File2[$e]=$HOME/.codex/generated_images/01a10c37-a3c9-7563-8435-4568193d5a70/exec-3c5d2ec1-c49d-439f-a5d9-2bb2dbcdb6db.png
+File3[$e]=$HOME/.codex/generated_images/01a10c46-3ae2-7c30-8dd0-39bfb2da8953/exec-77be11b8-5fa8-4373-9d1d-8deb78a27e90.png
+File4[$e]=$HOME/.codex/generated_images/01a10c46-3ae2-7c30-8dd0-39bfb2da8953/exec-997a2288-ce82-4e6c-8fa1-91065f06650e.png
+File5[$e]=$HOME/.codex/generated_images/01a10c46-3ae2-7c30-8dd0-39bfb2da8953/exec-89ffc8d3-7701-4c63-93ef-a6c7e21ccf51.png
+File6[$e]=$HOME/VRDQ_skin.png
+File7[$e]=$HOME/Downloads/𝙁𝙧𝙚𝙚-𝙑𝙞𝙙𝙚𝙤𝙨-icon-1024.gif
+File8[$e]=$HOME/Pictures/Screenshots/screenshot_2026-10-15_15-11-06.png
+File9[$e]=$HOME/Pictures/Screenshots/screenshot_2026-10-15_13-12-19.png
+Name1[$e]=screenshot_2026-10-02_23-36-44.png
+Name10[$e]=1.png
+Name2[$e]=exec-3c5d2ec1-c49d-439f-a5d9-2bb2dbcdb6db.png
+Name3[$e]=exec-77be11b8-5fa8-4373-9d1d-8deb78a27e90.png
+Name4[$e]=exec-997a2288-ce82-4e6c-8fa1-91065f06650e.png
+Name5[$e]=exec-89ffc8d3-7701-4c63-93ef-a6c7e21ccf51.png
+Name6[$e]=VRDQ_skin.png
+Name7[$e]=𝙁𝙧𝙚𝙚-𝙑𝙞𝙙𝙚𝙤𝙨-icon-1024.gif
+Name8[$e]=screenshot_2026-10-15_15-11-06.png
+Name9[$e]=screenshot_2026-10-15_13-12-19.png
+
+[SideBar]
+InformationSplitterSizes=220,255
+IsVisible ViewMode=true
+SideBarSplitterSizes=245,715
+
+[UiSettings]
+ColorScheme=Matugen

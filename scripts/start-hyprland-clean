@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# Hyprland session launcher with automatic GPU vendor detection
+# Ensures smooth compositor launch without driver collisions on Intel/AMD/NVIDIA systems.
+
+# Reset any TUI styling before Hyprland takes over the virtual terminal
+printf '\033[0m\033[2J\033[H'
+
+# Read PCI metadata directly: no lspci/grep processes or PCI name database scan.
+is_nvidia=false
+for pci_device in /sys/bus/pci/devices/*; do
+    [[ -r "$pci_device/vendor" && -r "$pci_device/class" ]] || continue
+    read -r vendor < "$pci_device/vendor" || continue
+    [[ "$vendor" == 0x10de ]] || continue
+    read -r device_class < "$pci_device/class" || continue
+    # PCI base class 03 covers VGA, 3D and other display controllers.
+    if [[ "$device_class" == 0x03* ]]; then
+        is_nvidia=true
+        break
+    fi
+done
+
+if [ "$is_nvidia" = true ]; then
+    # The text greeter can run before NVIDIA is ready. Wait here so an early
+    # login cannot launch Hyprland against the temporary simpledrm framebuffer.
+    nvidia_card=""
+    for ((attempt = 0; attempt < 200; attempt++)); do
+        for card in /sys/class/drm/card[0-9]*; do
+            [ -f "$card/device/vendor" ] || continue
+            read -r vendor < "$card/device/vendor" || continue
+            if [[ "$vendor" == "0x10de" && -c "/dev/dri/${card##*/}" ]]; then
+                nvidia_card="/dev/dri/${card##*/}"
+                break
+            fi
+        done
+        [ -n "$nvidia_card" ] && break
+        sleep 0.05
+    done
+    if [ -z "$nvidia_card" ]; then
+        echo "NVIDIA graphics did not become ready within 10 seconds. Try logging in again; if it repeats, check journalctl -b -k for NVIDIA errors." >&2
+        exit 1
+    fi
+
+    # NVIDIA goes first so it is the primary renderer. The MUX can wire the
+    # panel to the iGPU instead, so every card with a connected display is
+    # added after it; Hyprland copies NVIDIA's frames to those outputs.
+    if [ -z "$AQ_DRM_DEVICES" ]; then
+        drm_devices="$nvidia_card"
+        for status_file in /sys/class/drm/card[0-9]*-*/status; do
+            read -r state < "$status_file" || continue
+            [ "$state" = connected ] || continue
+            connector="${status_file%/status}"
+            card="/dev/dri/${connector##*/}"
+            card="${card%%-*}"
+            [[ ":$drm_devices:" == *":$card:"* ]] || drm_devices="${drm_devices:+$drm_devices:}$card"
+        done
+        export AQ_DRM_DEVICES="$drm_devices"
+    fi
+    export LIBVA_DRIVER_NAME=nvidia
+    export NVD_BACKEND=direct
+    export MOZ_DISABLE_RDD_SANDBOX=1
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __GL_GSYNC_ALLOWED=1
+    export __GL_VRR_ALLOWED=1
+    export __GL_SHADER_DISK_CACHE=1
+    export __GL_SHADER_DISK_CACHE_SIZE=10737418240
+    export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
+fi
+
+if command -v start-hyprland >/dev/null 2>&1; then
+    exec start-hyprland "$@"
+elif command -v Hyprland >/dev/null 2>&1; then
+    exec Hyprland "$@"
+elif command -v hyprland >/dev/null 2>&1; then
+    exec hyprland "$@"
+else
+    echo "Error: Hyprland executable not found in PATH." >&2
+    exit 1
+fi

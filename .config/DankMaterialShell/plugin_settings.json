@@ -1,0 +1,11 @@
+{
+  "cavaVisualizer": {
+    "enabled": false
+  },
+  "dmsfilemanager": {
+    "enabled": false
+  },
+  "hyprwhsprVoiceOverlay": {
+    "enabled": false
+  }
+}

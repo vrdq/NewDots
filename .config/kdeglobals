@@ -1,0 +1,184 @@
+[ColorEffects:Disabled]
+Color=150,144,128
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.65
+ContrastEffect=1
+IntensityAmount=0.1
+IntensityEffect=2
+
+ChangeSelectionColor=false
+Enable=true
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=16,14,7
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.15
+ContrastEffect=2
+Enable=true
+IntensityAmount=0
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=16,14,7
+BackgroundNormal=21,19,11
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=218,199,111
+ForegroundInactive=150,144,128
+ForegroundLink=218,199,111
+ForegroundNegative=255,180,171
+ForegroundNeutral=209,198,162
+ForegroundNormal=232,226,212
+ForegroundPositive=169,208,180
+ForegroundVisited=209,198,162
+
+[Colors:Complementary]
+BackgroundAlternate=16,14,7
+BackgroundNormal=16,14,7
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=218,199,111
+ForegroundInactive=150,144,128
+ForegroundLink=218,199,111
+ForegroundNegative=255,180,171
+ForegroundNeutral=209,198,162
+ForegroundNormal=232,226,212
+ForegroundPositive=169,208,180
+ForegroundVisited=209,198,162
+
+[Colors:Header]
+BackgroundAlternate=16,14,7
+BackgroundNormal=16,14,7
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=218,199,111
+ForegroundInactive=150,144,128
+ForegroundLink=218,199,111
+ForegroundNegative=255,180,171
+ForegroundNeutral=209,198,162
+ForegroundNormal=232,226,212
+ForegroundPositive=169,208,180
+ForegroundVisited=209,198,162
+
+[Colors:Header][Inactive]
+BackgroundAlternate=19,19,19
+BackgroundNormal=19,19,19
+DecorationFocus=94,94,94
+DecorationHover=94,94,94
+ForegroundActive=226,226,226
+ForegroundInactive=198,198,198
+ForegroundLink=226,226,226
+ForegroundNegative=255,180,171
+ForegroundNeutral=198,198,198
+ForegroundNormal=226,226,226
+ForegroundPositive=226,226,226
+ForegroundVisited=198,198,198
+
+[Colors:Selection]
+BackgroundAlternate=82,70,0
+BackgroundNormal=82,70,0
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=247,227,136
+ForegroundInactive=247,227,136
+ForegroundLink=247,227,136
+ForegroundNegative=247,227,136
+ForegroundNeutral=247,227,136
+ForegroundNormal=247,227,136
+ForegroundPositive=247,227,136
+ForegroundVisited=247,227,136
+
+[Colors:Tooltip]
+BackgroundAlternate=16,14,7
+BackgroundNormal=21,19,11
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=218,199,111
+ForegroundInactive=150,144,128
+ForegroundLink=218,199,111
+ForegroundNegative=255,180,171
+ForegroundNeutral=209,198,162
+ForegroundNormal=232,226,212
+ForegroundPositive=169,208,180
+ForegroundVisited=209,198,162
+
+[Colors:View]
+BackgroundAlternate=21,19,11
+BackgroundNormal=16,14,7
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=218,199,111
+ForegroundInactive=150,144,128
+ForegroundLink=218,199,111
+ForegroundNegative=255,180,171
+ForegroundNeutral=209,198,162
+ForegroundNormal=232,226,212
+ForegroundPositive=169,208,180
+ForegroundVisited=209,198,162
+
+[Colors:Window]
+BackgroundAlternate=16,14,7
+BackgroundNormal=16,14,7
+DecorationFocus=218,199,111
+DecorationHover=218,199,111
+ForegroundActive=218,199,111
+ForegroundInactive=150,144,128
+ForegroundLink=218,199,111
+ForegroundNegative=255,180,171
+ForegroundNeutral=209,198,162
+ForegroundNormal=232,226,212
+ForegroundPositive=169,208,180
+ForegroundVisited=209,198,162
+
+[General]
+ColorScheme=Matugen
+Name=Dank Shell (matugen)
+fixed=JetBrains Mono,10,-1,5,50,0,0,0,0,0
+font=JetBrains Mono,10,-1,5,50,0,0,0,0,0
+menuFont=JetBrains Mono,10,-1,5,50,0,0,0,0,0
+shadeSortColumn=true
+smallestReadableFont=JetBrains Mono,8,-1,5,50,0,0,0,0,0
+toolBarFont=JetBrains Mono,10,-1,5,50,0,0,0,0,0
+
+[Icons]
+Theme=BreezeDarkMonochrome
+cursorSize=24
+cursorTheme=Bibata-Modern-Classic
+
+[KDE]
+contrast=4
+widgetStyle=Breeze
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=121
+View Style=DetailTree
+
+[PreviewSettings]
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=0
+
+[UiSettings]
+ColorScheme=Matugen
+
+[WM]
+activeBackground=218,199,111
+activeBlend=57,48,0
+activeForeground=57,48,0
+inactiveBackground=16,14,7
+inactiveBlend=150,144,128
+inactiveForeground=150,144,128

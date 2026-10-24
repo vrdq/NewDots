@@ -1,0 +1,21 @@
+# Operating system and editor artifacts
+*~
+*.swp
+*.swo
+.DS_Store
+__pycache__/
+*.pyc
+*.bak*
+
+# Machine-local overrides (safe place for personal tweaks without git diffs)
+*.local.lua
+*.local.conf
+monitors.local.lua
+
+# Build products
+src/crosshair/crosshair
+
+# Session & universal variable caches
+fish_variables
+.dms-backups/
+.cursor_version

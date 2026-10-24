@@ -1,0 +1,4 @@
+[Icon Theme]
+Name=Bibata Crosshair Black
+Comment=Custom cross.cur pointer with Bibata Modern Classic fallback cursors
+Inherits=Bibata-Modern-Classic
