@@ -2,41 +2,41 @@
 
 -- === Application Launchers ===
 hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
-hl.bind("SUPER + space", hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
-hl.bind("ALT + space", hl.dsp.exec_cmd("dms ipc call spotlight-bar toggle"))
-hl.bind("SUPER + V", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
-hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call processlist focusOrToggle"))
-hl.bind("SUPER + comma", hl.dsp.exec_cmd("dms ipc call settings focusOrToggle"))
+-- [PURGED DMS] hl.bind("SUPER + space", hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
+-- [PURGED DMS] hl.bind("ALT + space", hl.dsp.exec_cmd("dms ipc call spotlight-bar toggle"))
+-- [PURGED DMS] hl.bind("SUPER + V", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+-- [PURGED DMS] hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call processlist focusOrToggle"))
+-- [PURGED DMS] hl.bind("SUPER + comma", hl.dsp.exec_cmd("dms ipc call settings focusOrToggle"))
 -- hl.bind("SUPER + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
-hl.bind("SUPER + Y", hl.dsp.exec_cmd("dms ipc call dash toggle wallpaper"))
+-- [PURGED DMS] hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
+-- [PURGED DMS] hl.bind("SUPER + Y", hl.dsp.exec_cmd("dms ipc call dash toggle wallpaper"))
 -- hl.bind("SUPER + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
-hl.bind("SUPER + O", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+-- [PURGED DMS] hl.bind("SUPER + O", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 -- hl.bind("SUPER + X", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 
 -- === Cheat sheet
-hl.bind("SUPER + SHIFT + Slash", hl.dsp.exec_cmd("dms ipc call keybinds toggle hyprland"))
+-- [PURGED DMS] hl.bind("SUPER + SHIFT + Slash", hl.dsp.exec_cmd("dms ipc call keybinds toggle hyprland"))
 
 -- === Security ===
-hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
+-- [PURGED DMS] hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
 hl.bind("SUPER + SHIFT + E", hl.dsp.exit())
-hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("dms ipc call processlist focusOrToggle"))
+-- [PURGED DMS] hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("dms ipc call processlist focusOrToggle"))
 
 -- === Audio Controls ===
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call audio increment 3"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 3"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("dms ipc call audio mute"), { locked = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("dms ipc call audio micmute"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("dms ipc call mpris previous"), { locked = true })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("dms ipc call mpris next"), { locked = true })
-hl.bind("CTRL + XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call mpris increment 3"), { locked = true, repeating = true })
-hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call mpris decrement 3"), { locked = true, repeating = true })
+-- [PURGED DMS] hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call audio increment 3"), { locked = true, repeating = true })
+-- [PURGED DMS] hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 3"), { locked = true, repeating = true })
+-- [PURGED DMS] hl.bind("XF86AudioMute", hl.dsp.exec_cmd("dms ipc call audio mute"), { locked = true })
+-- [PURGED DMS] hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("dms ipc call audio micmute"), { locked = true })
+-- [PURGED DMS] hl.bind("XF86AudioPause", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
+-- [PURGED DMS] hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
+-- [PURGED DMS] hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("dms ipc call mpris previous"), { locked = true })
+-- [PURGED DMS] hl.bind("XF86AudioNext", hl.dsp.exec_cmd("dms ipc call mpris next"), { locked = true })
+-- [PURGED DMS] hl.bind("CTRL + XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call mpris increment 3"), { locked = true, repeating = true })
+-- [PURGED DMS] hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call mpris decrement 3"), { locked = true, repeating = true })
 
 -- === Brightness Controls ===
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[dms ipc call brightness increment 5 ""]]), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decrement 5 ""]]), { locked = true, repeating = true })
+-- [PURGED DMS] hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[dms ipc call brightness increment 5 ""]]), { locked = true, repeating = true })
+-- [PURGED DMS] hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decrement 5 ""]]), { locked = true, repeating = true })
 
 -- === Window Management ===
 -- hl.bind("SUPER + Q", hl.dsp.window.close())
@@ -44,7 +44,7 @@ hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "to
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
 -- hl.bind("SUPER + W", hl.dsp.group.toggle())
-hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("dms ipc call window-rules toggle"))
+-- [PURGED DMS] hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("dms ipc call window-rules toggle"))
 
 -- === Focus Navigation ===
 hl.bind("SUPER + left", hl.dsp.focus({ direction = "l" }))
@@ -99,7 +99,7 @@ hl.bind("SUPER + CTRL + U", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind("SUPER + CTRL + I", hl.dsp.window.move({ workspace = "e-1" }))
 
 -- === Workspace Management ===
-hl.bind("CTRL + SHIFT + R", hl.dsp.exec_cmd("dms ipc call workspace-rename open"))
+-- [PURGED DMS] hl.bind("CTRL + SHIFT + R", hl.dsp.exec_cmd("dms ipc call workspace-rename open"))
 
 -- === Move Workspaces ===
 hl.bind("SUPER + SHIFT + Page_Down", hl.dsp.window.move({ workspace = "e+1" }))
@@ -160,12 +160,12 @@ hl.bind("SUPER + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -100, relativ
 hl.bind("SUPER + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
 
 -- === Screenshots ===
-hl.bind("Print", hl.dsp.exec_cmd("dms screenshot"))
-hl.bind("CTRL + Print", hl.dsp.exec_cmd("dms screenshot full"))
-hl.bind("ALT + Print", hl.dsp.exec_cmd("dms screenshot window"))
+-- [PURGED DMS] hl.bind("Print", hl.dsp.exec_cmd("dms screenshot"))
+-- [PURGED DMS] hl.bind("CTRL + Print", hl.dsp.exec_cmd("dms screenshot full"))
+-- [PURGED DMS] hl.bind("ALT + Print", hl.dsp.exec_cmd("dms screenshot window"))
 
 -- === Display Profiles ===
-hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc outputs cycleProfile"))
+-- [PURGED DMS] hl.bind("SUPER + P", hl.dsp.exec_cmd("dms ipc outputs cycleProfile"))
 
 -- === System Controls ===
 hl.bind("SUPER + SHIFT + P", hl.dsp.dpms({ action = "toggle" }))
