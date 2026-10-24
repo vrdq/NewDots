@@ -80,6 +80,22 @@ hl.window_rule({
     size = {720, 500},
 })
 
+hl.window_rule({
+    name = "dusky-tui-float",
+    match = { class = "^(dusky_tui)$" },
+    float = true,
+    center = true,
+    size = {860, 560},
+})
+
+hl.window_rule({
+    name = "btop-float",
+    match = { class = "^(btop)$" },
+    float = true,
+    center = true,
+    size = {1080, 620},
+})
+
 -- -----------------------------------------------------------------------------
 -- 4. PERFORMANCE & TEARING (Games)
 -- -----------------------------------------------------------------------------
