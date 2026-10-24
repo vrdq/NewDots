@@ -23,7 +23,6 @@
     
     "modules-center": [
         "clock",
-        "group/updates-drawer",
         "privacy"
     ],
     
@@ -32,7 +31,6 @@
         "memory", 
         "temperature",
         "custom/separator",
-        "bluetooth", 
         "battery",
         "custom/separator-2",
         "custom/notification",
