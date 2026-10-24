@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=SPOFF
+GenericName=Music Player
+Comment=Terminal Spotify & YouTube Music Player
+Exec=/home/vrdq/.local/bin/spoff
+Icon=spotify
+Terminal=true
+Categories=Audio;AudioVideo;Player;
+StartupWMClass=spoff
