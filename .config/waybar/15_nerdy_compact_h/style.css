@@ -179,14 +179,14 @@ tooltip label {
 }
 
 #workspaces button {
-    padding: 0px 1px 0px 2px;
+    padding: 0px 2px;
     margin: 2px 1px;
     border-radius: 4px;
     color: @on_surface_variant;
     background: transparent;
-    min-width: 16px;
-    min-height: 16px;
-    font-size: 10px;
+    min-width: 18px;
+    min-height: 18px;
+    font-size: 11px;
     font-weight: 600;
 }
 
@@ -291,7 +291,7 @@ tooltip label {
 #temperature {
     padding: 0px 5px;
     margin: 2px 1px;
-    font-size: 10px;
+    font-size: 12px;
     border-radius: 4px;
 }
 
@@ -355,7 +355,7 @@ tooltip label {
 #network,
 #pulseaudio,
 #battery {
-    font-size: 10px;
+    font-size: 12px;
     padding: 0 5px;
     margin: 2px 0;
     border-radius: 4px;
