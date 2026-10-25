@@ -1,1 +1,17 @@
 include=~/.config/matugen/generated/mako-colors.ini
+
+# ==============================================================================
+# SYSTEM-WIDE NOTIFICATIONS DISABLED
+# Keeps mako daemon running so apps (Discord, Spotify, browsers) don't crash
+# ==============================================================================
+[urgency=low]
+invisible=1
+on-notify=none
+
+[urgency=normal]
+invisible=1
+on-notify=none
+
+[urgency=critical]
+invisible=1
+on-notify=none

@@ -64,7 +64,7 @@ def update_settings_json(colors: dict[str, str]) -> None:
         except Exception:
             settings = {}
 
-    settings["seasonalThemesOff"] = True
+    settings["seasonalThemesOff"] = "halloween-2026"
     settings["seasonalThemesOptIn"] = ""
     settings["colorScheme"] = "terminal"
     settings["customThemeSeedsDark"] = {
