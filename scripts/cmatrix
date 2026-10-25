@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Dynamic Theme-Aware cmatrix Wrapper
-# Dynamically inherits Material You accent/primary color from Matugen
+# Dynamically inherits Material You accent color and enforces transparent background
 # ==============================================================================
+
+# Ensure transparent background hook library is available
+LIB_SO="${XDG_DATA_HOME:-$HOME/.local}/lib/cmatrix_transparent.so"
+SRC_C="$HOME/NewDots/src/cmatrix_transparent/cmatrix_transparent.c"
+
+if [[ ! -f "$LIB_SO" && -f "$SRC_C" ]] && command -v gcc &>/dev/null; then
+    mkdir -p "$(dirname "$LIB_SO")"
+    gcc -O3 -fPIC -shared "$SRC_C" -o "$LIB_SO" -lncursesw -ldl 2>/dev/null || true
+fi
+
+if [[ -f "$LIB_SO" ]]; then
+    export LD_PRELOAD="$LIB_SO${LD_PRELOAD:+:$LD_PRELOAD}"
+fi
 
 # Extract theme accent color if available
 THEME_JSON="${XDG_CONFIG_HOME:-$HOME/.config}/matugen/generated/dusky_tui.json"
