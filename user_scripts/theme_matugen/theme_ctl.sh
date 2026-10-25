@@ -1073,6 +1073,7 @@ generate_colors() {
     local image="$1"
     local output
     local -a command=()
+    export SHELL=/bin/bash
 
     check_deps matugen
     validate_image "$image"
@@ -1111,6 +1112,7 @@ apply_solid_color() {
     local hex="$1"
     local output
     local -a command=()
+    export SHELL=/bin/bash
 
     check_deps matugen
 

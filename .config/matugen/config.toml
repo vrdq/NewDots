@@ -38,51 +38,55 @@ post_hook   = '''
   gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark" || :
 '''
 
-# [templates.papirus-folders]
-# input_path = '~/.config/matugen/templates/papirus-color'
-# output_path = '~/.config/matugen/generated/papirus'
-# colors_to_compare = [
-#     { name = "adwaita",    color = "#93c0ea" },
-#     { name = "black",      color = "#4f4f4f" },
-#     { name = "blue",       color = "#5294e2" },
-#     { name = "bluegrey",   color = "#607d8b" },
-#     { name = "breeze",     color = "#57b8ec" },
-#     { name = "brown",      color = "#ae8e6c" },
-#     { name = "carmine",    color = "#a30002" },
-#     { name = "cyan",       color = "#00bcd4" },
-#     { name = "darkcyan",   color = "#45abb7" },
-#     { name = "deeporange", color = "#eb6637" },
-#     { name = "green",      color = "#87b158" },
-#     { name = "grey",       color = "#8e8e8e" },
-#     { name = "indigo",     color = "#5c6bc0" },
-#     { name = "magenta",    color = "#ca71df" },
-#     { name = "nordic",     color = "#81a1c1" },
-#     { name = "orange",     color = "#ee923a" },
-#     { name = "palebrown",  color = "#d1bfae" },
-#     { name = "paleorange", color = "#eeca8f" },
-#     { name = "pink",       color = "#f06292" },
-#     { name = "red",        color = "#e25252" },
-#     { name = "teal",       color = "#16a085" },
-#     { name = "violet",     color = "#7e57c2" },
-#     { name = "white",      color = "#e4e4e4" },
-#     { name = "yaru",       color = "#676767" },
-#     { name = "yellow",     color = "#f9bd30" },
-# ]
-# compare_to = "{{ colors.primary.default.hex }}"
-# post_hook = '''
-#   if command -v papirus-folders >/dev/null 2>&1; then
-#     # Refresh only after recoloring and cache updates finish. A fixed delay
-#     # races slow machines and can leave applications showing the old icons.
-#     if sudo -n papirus-folders -C {{ closest_color }} --theme Papirus-Dark -u > /dev/null; then
-#       gsettings set org.gnome.desktop.interface icon-theme "Adwaita" 2>/dev/null || :
-#       gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark" 2>/dev/null || :
-#     else
-#       echo "[matugen] papirus-folders failed; retaining the current icon theme" >&2
-#     fi
-#   else
-#     echo "[matugen] papirus-folders not installed — install via: paru -S papirus-folders" >&2
-#   fi
-# '''
+[templates.papirus-folders]
+input_path = '~/.config/matugen/templates/papirus-color'
+output_path = '~/.config/matugen/generated/papirus'
+colors_to_compare = [
+    { name = "adwaita",    color = "#93c0ea" },
+    { name = "black",      color = "#4f4f4f" },
+    { name = "blue",       color = "#5294e2" },
+    { name = "bluegrey",   color = "#607d8b" },
+    { name = "breeze",     color = "#57b8ec" },
+    { name = "brown",      color = "#ae8e6c" },
+    { name = "carmine",    color = "#a30002" },
+    { name = "cyan",       color = "#00bcd4" },
+    { name = "darkcyan",   color = "#45abb7" },
+    { name = "deeporange", color = "#eb6637" },
+    { name = "green",      color = "#87b158" },
+    { name = "grey",       color = "#8e8e8e" },
+    { name = "indigo",     color = "#5c6bc0" },
+    { name = "magenta",    color = "#ca71df" },
+    { name = "nordic",     color = "#81a1c1" },
+    { name = "orange",     color = "#ee923a" },
+    { name = "palebrown",  color = "#d1bfae" },
+    { name = "paleorange", color = "#eeca8f" },
+    { name = "pink",       color = "#f06292" },
+    { name = "red",        color = "#e25252" },
+    { name = "teal",       color = "#16a085" },
+    { name = "violet",     color = "#7e57c2" },
+    { name = "white",      color = "#e4e4e4" },
+    { name = "yaru",       color = "#676767" },
+    { name = "yellow",     color = "#f9bd30" },
+]
+compare_to = "{{ colors.primary.default.hex }}"
+post_hook = '''
+  if command -v papirus-folders >/dev/null 2>&1; then
+    # Refresh only after recoloring and cache updates finish. A fixed delay
+    # races slow machines and can leave applications showing the old icons.
+    if sudo -n papirus-folders -C {{ closest_color }} --theme Papirus-Dark -u > /dev/null; then
+      gsettings set org.gnome.desktop.interface icon-theme "Adwaita" 2>/dev/null || :
+      gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark" 2>/dev/null || :
+      gdbus emit --session -o /KGlobalSettings -s org.kde.KGlobalSettings.notifyChange 4 0 2>/dev/null || :
+      for s in $(qdbus6 2>/dev/null | grep '^ org.kde.dolphin-'); do
+        qdbus6 $s /dolphin/Dolphin_1/actions/view_redisplay trigger 2>/dev/null || :
+      done
+    else
+      echo "[matugen] papirus-folders failed; retaining the current icon theme" >&2
+    fi
+  else
+    echo "[matugen] papirus-folders not installed — install via: paru -S papirus-folders" >&2
+  fi
+'''
 
 [templates.qt5ct]
 input_path  = '~/.config/matugen/templates/qtct-colors.conf'
@@ -99,13 +103,13 @@ input_path  = '~/.config/matugen/templates/Matugen.colors'
 output_path = '~/.config/matugen/generated/kdeglobals'
 post_hook   = 'python3 "$HOME/user_scripts/theme_matugen/global/kde_colors.py"'
 
-# [templates.kate_syntax]
-# input_path  = '~/.config/matugen/templates/kate-syntax.theme'
-# output_path = '~/.config/matugen/generated/kate-matugen.theme'
-# post_hook   = '''
-#   mkdir -p "$HOME/.local/share/org.kde.syntax-highlighting/themes"
-#   ln -nfs "$HOME/.config/matugen/generated/kate-matugen.theme" "$HOME/.local/share/org.kde.syntax-highlighting/themes/Matugen.theme"
-# '''
+[templates.kate_syntax]
+input_path  = '~/.config/matugen/templates/kate-syntax.theme'
+output_path = '~/.config/matugen/generated/kate-matugen.theme'
+post_hook   = '''
+  mkdir -p "$HOME/.local/share/org.kde.syntax-highlighting/themes"
+  ln -nfs "$HOME/.config/matugen/generated/kate-matugen.theme" "$HOME/.local/share/org.kde.syntax-highlighting/themes/Matugen.theme"
+'''
 
 # [templates.konsole]
 # input_path  = '~/.config/matugen/templates/konsole.colorscheme'
@@ -133,16 +137,16 @@ input_path  = '~/.config/matugen/templates/kvantum-colors.svg'
 output_path = '~/.config/matugen/generated/kvantum-matugen.svg'
 post_hook   = 'python3 "$HOME/user_scripts/theme_matugen/global/qt_colors.py" kvantum_svg'
 
-# [templates.gimp]
-# input_path  = '~/.config/matugen/templates/gimp.css'
-# output_path = '~/.config/matugen/generated/gimp.css'
-# post_hook   = '''
-#   ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.0/themes/Matugen/gimp.css"
-#   ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.2/themes/Matugen/gimp.css"
-#   # Personal override for immediate effect regardless of theme selection
-#   ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.2/gimp.css"
-#   ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.0/gimp.css"
-# '''
+[templates.gimp]
+input_path  = '~/.config/matugen/templates/gimp.css'
+output_path = '~/.config/matugen/generated/gimp.css'
+post_hook   = '''
+  ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.0/themes/Matugen/gimp.css"
+  ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.2/themes/Matugen/gimp.css"
+  # Personal override for immediate effect regardless of theme selection
+  ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.2/gimp.css"
+  ln -nfs "$HOME/.config/matugen/generated/gimp.css" "$HOME/.config/GIMP/3.0/gimp.css"
+'''
 
 
 # =============================================================================
@@ -169,16 +173,16 @@ post_hook   = 'python3 "$HOME/user_scripts/cursor/color/dusky_cursor.py" --apply
 # by '|| :' so a broken hook is visible in matugen's output.
 
 
-# [templates.waybar]
-# input_path  = '~/.config/matugen/templates/colors.css'
-# output_path = '~/.config/matugen/generated/waybar-colors.css'
-# post_hook   = '''
-#   pkill -USR2 -x waybar || :
-# '''
+[templates.waybar]
+input_path  = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/matugen/generated/waybar-colors.css'
+post_hook   = '''
+  pkill -USR2 -x waybar || :
+'''
 
-# [templates.wlogout]
-# input_path  = '~/.config/matugen/templates/colors.css'
-# output_path = '~/.config/matugen/generated/wlogout-colors.css'
+[templates.wlogout]
+input_path  = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/matugen/generated/wlogout-colors.css'
 
 [templates.mako]
 input_path  = '~/.config/matugen/templates/mako.ini'
@@ -212,13 +216,13 @@ post_hook   = '''
 input_path  = '~/.config/matugen/templates/dusky_tui.json'
 output_path = '~/.config/matugen/generated/dusky_tui.json'
 
-[templates.foot]
-input_path  = '~/.config/matugen/templates/foot-colors.ini'
-output_path = '~/.config/matugen/generated/foot-colors.ini'
-post_hook   = '''
-  ln -nfs "$HOME/.config/matugen/generated/foot-colors.ini" "$HOME/.config/foot/foot-colors.ini"
-  touch "$HOME/.config/foot/foot.ini" || :
-'''
+# [templates.foot]
+# input_path  = '~/.config/matugen/templates/foot-colors.ini'
+# output_path = '~/.config/matugen/generated/foot-colors.ini'
+# post_hook   = '''
+#   ln -nfs "$HOME/.config/matugen/generated/foot-colors.ini" "$HOME/.config/foot/foot-colors.ini"
+#   touch "$HOME/.config/foot/foot.ini" || :
+# '''
 
 # [templates.khal]
 # input_path  = '~/.config/matugen/templates/khal.conf'
@@ -343,16 +347,16 @@ post_hook   = '''
 #   fi
 # '''
 
-# [templates.spicetify]
-# input_path  = '~/.config/matugen/templates/spotify-colors.ini'
-# output_path = '~/.config/matugen/generated/spotify-colors.ini'
-# post_hook   = '''
-#   if command -v spicetify >/dev/null 2>&1 && [ -d "$HOME/.config/spicetify/Themes/Comfy" ]; then
-#       ln -nfs "$HOME/.config/matugen/generated/spotify-colors.ini" "$HOME/.config/spicetify/Themes/Comfy/color.ini"
-#       spicetify apply -n || spicetify backup apply || :
-#       hyprctl dispatch sendshortcut "CTRL_SHIFT, R, class:^(Spotify)$" || :
-#   fi
-# '''
+[templates.spicetify]
+input_path  = '~/.config/matugen/templates/spotify-colors.ini'
+output_path = '~/.config/matugen/generated/spotify-colors.ini'
+post_hook   = '''
+  if command -v spicetify >/dev/null 2>&1 && [ -d "$HOME/.config/spicetify/Themes/Comfy" ]; then
+      ln -nfs "$HOME/.config/matugen/generated/spotify-colors.ini" "$HOME/.config/spicetify/Themes/Comfy/color.ini"
+      spicetify apply -n || spicetify backup apply || :
+      hyprctl dispatch sendshortcut "CTRL_SHIFT, R, class:^(Spotify)$" || :
+  fi
+'''
 
 # [templates.steam]
 # input_path  = '~/.config/matugen/templates/steam.css'
@@ -400,21 +404,21 @@ output_path = '~/.config/matugen/generated/dusky_sites.css'
 # 4. System Services & Daemons (Triggered on theme change )
 #=============================================================================
 
-# [templates.dusky_control_center]
-# input_path  = '/dev/null'
-# output_path = '/dev/null'
-# post_hook   = '''
-#   systemctl --user reset-failed dusky.service || :
-#   systemctl --user restart dusky.service || :
-# '''
+[templates.dusky_control_center]
+input_path  = '/dev/null'
+output_path = '/dev/null'
+post_hook   = '''
+  systemctl --user reset-failed dusky.service || :
+  systemctl --user restart dusky.service || :
+'''
 
-# [templates.dusky_quickpanal]
-# input_path  = '/dev/null'
-# output_path = '/dev/null'
-# post_hook   = '''
-#   systemctl --user reset-failed dusky_quickpanal.service || :
-#   systemctl --user restart dusky_quickpanal.service || :
-# '''
+[templates.dusky_quickpanal]
+input_path  = '/dev/null'
+output_path = '/dev/null'
+post_hook   = '''
+  systemctl --user reset-failed dusky_quickpanal.service || :
+  systemctl --user restart dusky_quickpanal.service || :
+'''
 
 
 # =============================================================================

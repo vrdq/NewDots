@@ -43,8 +43,9 @@ def read_scheme(text):
     # Explicit allowlist: generated content never owns unrelated desktop settings.
     entries = {group: dict(scheme[group]) for group in
                (*COLOR_GROUPS, "ColorEffects:Disabled", "ColorEffects:Inactive", "WM")}
-    entries.update({"General": {"ColorScheme": "Matugen"},
-                    "UiSettings": {"ColorScheme": "Matugen"}})
+    entries.update({"General": {"ColorScheme": "Matugen", "Name": "Matugen"},
+                    "UiSettings": {"ColorScheme": "Matugen"},
+                    "KDE": {"ColorScheme": "Matugen"}})
     return entries
 
 
@@ -60,6 +61,17 @@ def notify(entries):
     bus.emit_signal(None, "/KGlobalSettings", "org.kde.KGlobalSettings", "notifyChange",
                     GLib.Variant("(ii)", (0, 0)))
     bus.flush_sync(None)
+
+    # Refresh any running Dolphin instances so views immediately reflect the new theme
+    try:
+        import subprocess
+        for s in subprocess.check_output(["qdbus6"], text=True).splitlines():
+            s = s.strip()
+            if s.startswith("org.kde.dolphin-"):
+                subprocess.run(["qdbus6", s, "/dolphin/Dolphin_1/actions/view_redisplay", "trigger"],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
 
 
 def publish():
