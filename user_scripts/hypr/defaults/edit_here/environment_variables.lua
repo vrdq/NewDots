@@ -14,3 +14,4 @@
 --
 -- See: https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 -- ==============================================================================
+hl.env("FREETYPE_PROPERTIES", "truetype:interpreter-version=40 cff:no-stem-darkening=0 type1:no-stem-darkening=0")

@@ -78,11 +78,12 @@ hl_env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl_env("MOZ_ENABLE_WAYLAND", "1")
 hl_env("GTK_USE_PORTAL", "1") -- use xdg-desktop-portal file picker on Hyprland
 
--- 7. Appearance / cursor
+-- 7. Appearance / cursor / typography
 hl_env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl_env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 hl_env("XCURSOR_SIZE", "24")
 hl_env("HYPRCURSOR_SIZE", "24")
+hl_env("FREETYPE_PROPERTIES", "truetype:interpreter-version=40 cff:no-stem-darkening=0 type1:no-stem-darkening=0")
 
 -- 8. Apps / defaults
 hl_env("TERMINAL", "xdg-terminal-exec")

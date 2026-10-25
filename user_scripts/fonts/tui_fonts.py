@@ -321,7 +321,7 @@ SCHEMA = {
             key="rgba",
             scope="DEFAULT",
             type_="picker",
-            default="none",
+            default="rgb",
             options=["none", "rgb", "bgr", "vrgb", "vbgr"],
             hints=[
                 "Grayscale smoothing", "Standard horizontal (Most common)", 
@@ -347,7 +347,7 @@ SCHEMA = {
             key="embeddedbitmap",
             scope="DEFAULT",
             type_="bool",
-            default=True,
+            default=False,
             extended_help="Controls embedded bitmap strikes in outline fonts. Color fonts retain their bitmap glyphs even when this is off, so bitmap emoji remain available."
         )
     ],
