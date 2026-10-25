@@ -160,7 +160,7 @@ hl.config({
     },
 
     render = {
-        direct_scanout = 0, -- Attempt to reduce lag for single fullscreen app [0=off, 1=on, 2=auto]
+        direct_scanout = 1, -- Attempt to reduce lag for single fullscreen app [0=off, 1=on, 2=auto]
         expand_undersized_textures = true, -- Expand undersized textures vs stretching entire texture
         xp_mode = false, -- Disables back buffer and bottom layer rendering
         ctm_animation = 2, -- Fade animation for CTM changes (2=auto disables on Nvidia)

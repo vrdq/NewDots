@@ -14,7 +14,7 @@ hl.config({
 	-- GENERAL (Borders, Gaps, Colors)
 	-- ==========================================
 	general = {
-		border_size = 0, -- Size of the border around windows
+		border_size = 2, -- Size of the border around windows
 		gaps_in = 2, -- Gaps between windows
 		gaps_out = 5, -- Gaps between windows and monitor edges
 		float_gaps = 2, -- Gaps for floating windows (-1 means default)
@@ -36,10 +36,10 @@ hl.config({
 	-- DECORATION (Rounding, Blur, Shadows)
 	-- ==========================================
 	decoration = {
-		rounding = 12, -- Rounded corners' radius (in layout px)
+		rounding = 2, -- Rounded corners' radius (in layout px)
 		rounding_power = 2.0, -- Curve used for rounding (2.0 is circle, 4.0 squircle, 1.0 triangular)
-		active_opacity = 0.75, -- Opacity of active windows [0.0 - 1.0]
-		inactive_opacity = 0.65, -- Opacity of inactive windows [0.0 - 1.0]
+		active_opacity = 0.85, -- Opacity of active windows [0.0 - 1.0]
+		inactive_opacity = 0.85, -- Opacity of inactive windows [0.0 - 1.0]
 		fullscreen_opacity = 1.0, -- Opacity of fullscreen windows [0.0 - 1.0]
 		dim_modal = true, -- Enables dimming of parents of modal windows
 		dim_inactive = true, -- Enables dimming of inactive windows
@@ -51,8 +51,8 @@ hl.config({
 
 		blur = {
 			enabled = true, -- Enable kawase window background blur
-			size = 15, -- Blur size (distance)
-			passes = 3, -- Amount of passes to perform
+			size = 6, -- Blur size (distance)
+			passes = 2, -- Amount of passes to perform
 			ignore_opacity = true, -- Make the blur layer ignore the opacity of the window
 			new_optimizations = true, -- Enable further optimizations (massively improves performance)
 			xray = false, -- Floating windows ignore tiled windows in blur (reduces overhead)
@@ -70,7 +70,7 @@ hl.config({
 
 		shadow = {
 			enabled = true, -- Enable drop shadows on windows
-			range = 30, -- Shadow range ("size") in layout px
+			range = 6, -- Shadow range ("size") in layout px
 			render_power = 1, -- Falloff power (more power = faster falloff) [1 - 4]
 			sharp = false, -- Make shadows sharp, akin to infinite render power
 			color = "rgba(1a1a1aee)", -- Shadow's color. Alpha dictates opacity
@@ -167,7 +167,7 @@ hl.config({
 	},
 
 	render = {
-		direct_scanout = 0, -- Attempt to reduce lag for single fullscreen app [0=off, 1=on, 2=auto]
+		direct_scanout = 1, -- Attempt to reduce lag for single fullscreen app [0=off, 1=on, 2=auto]
 		expand_undersized_textures = true, -- Expand undersized textures vs stretching entire texture
 		xp_mode = false, -- Disables back buffer and bottom layer rendering
 		ctm_animation = 2, -- Fade animation for CTM changes (2=auto disables on Nvidia)

@@ -135,7 +135,7 @@
         "format": "{:%I:%M %p}",
         "format-alt": " {:%A, %d %B %Y  •  %I:%M:%S %p}",
         "tooltip-format": "<tt>{calendar}</tt>",
-        "interval": 1,
+        "interval": 10,
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,

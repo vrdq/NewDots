@@ -1,3 +1,4 @@
+# Environment variables
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx GIT_EDITOR nvim
@@ -5,13 +6,22 @@ set -gx GIT_EDITOR nvim
 # Ensure user local bin is on PATH
 fish_add_path -g $HOME/.local/bin
 
-# Keep runtime paths available to scripts, but skip terminal-only setup below.
+# Optional runtime paths (only added if present on disk)
 if test -d "$HOME/.bun"
     set --export BUN_INSTALL "$HOME/.bun"
     fish_add_path -g $BUN_INSTALL/bin
 end
 
+if test -d "$HOME/.spicetify"
+    fish_add_path -g "$HOME/.spicetify"
+end
+
+# Non-interactive shells exit here
 status is-interactive; or return
+
+# Interactive session setup
+set -g fish_greeting ""
+set -g fish_key_bindings fish_user_key_bindings
 
 # Icon-aware directory listings with fallback to standard ls
 if type -q eza
@@ -28,19 +38,9 @@ if type -q fastfetch
     alias ff='fastfetch'
 end
 
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-    set -g fish_greeting ""
-    set -g fish_key_bindings fish_user_key_bindings
-
-    # Bindings and prompt are autoloaded from functions/, with one definition each.
-
-    function fish_title
-    end
-
-    if type -q starship
-        starship init fish | source
-    end
+function fish_title
 end
 
-fish_add_path /home/vrdq/.spicetify
+if type -q starship
+    starship init fish | source
+end
