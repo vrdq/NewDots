@@ -1,23 +1,22 @@
-
 "$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
 
 format = """
-[](#3b2d42)\
+[](#262b26)\
 $os\
 $username\
-[](bg:#da627d fg:#3b2d42)\
+[](bg:#99d4a3 fg:#262b26)\
 $directory\
-[](bg:#c6a0f6 fg:#da627d)\
+[](bg:#a2ced8 fg:#99d4a3)\
 $time\
-[](fg:#c6a0f6)
+[](fg:#a2ced8)
 $character"""
 
 right_format = """$git_branch$git_status$cmd_duration"""
 
 [os]
-style = "bg:#3b2d42 fg:#e8b6f0 bold"
+style = "bg:#262b26 fg:#99d4a3 bold"
 format = "[ $symbol]($style)"
 disabled = false
 
@@ -28,13 +27,13 @@ Linux = "󰣇 "
 
 [username]
 show_always = true
-style_user = "bg:#3b2d42 fg:#eae0e7 bold"
-style_root = "bg:#3b2d42 fg:#ffb4ab bold"
+style_user = "bg:#262b26 fg:#dfe4dc bold"
+style_root = "bg:#262b26 fg:#ffb4ab bold"
 format = "[$user ]($style)"
 disabled = false
 
 [directory]
-style = "bg:#da627d fg:#161217 bold"
+style = "bg:#99d4a3 fg:#003918 bold"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -48,16 +47,16 @@ truncation_symbol = "…/"
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:#c6a0f6 fg:#2f0a3a bold"
+style = "bg:#a2ced8 fg:#01363e bold"
 format = "[  $time ]($style)"
 
 [git_branch]
 symbol = " "
-style = "bold #e8b6f0"
+style = "bold #99d4a3"
 format = "[$symbol$branch]($style) "
 
 [git_status]
-style = "bold #f5b7b1"
+style = "bold #b7ccb7"
 format = "([$all_status$ahead_behind]($style) )"
 conflicted = "="
 ahead = "⇡${count}"
@@ -68,10 +67,10 @@ modified = "!"
 
 [cmd_duration]
 min_time = 2_000
-style = "bold #eed49f"
+style = "bold #a2ced8"
 format = "[$duration]($style)"
 
 [character]
-success_symbol = "[❯](bold #e8b6f0) "
+success_symbol = "[❯](bold #99d4a3) "
 error_symbol = "[❯](bold #ffb4ab) "
-vimcmd_symbol = "[❮](bold #a6da95) "
+vimcmd_symbol = "[❮](bold #a2ced8) "

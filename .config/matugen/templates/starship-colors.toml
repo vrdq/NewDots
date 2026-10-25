@@ -1,29 +1,42 @@
-format = '''
-$directory$git_branch$rust$python
-$character'''
+"$schema" = "https://starship.rs/config-schema.json"
 
-palette = 'colors'
+add_newline = false
 
-[palettes.colors]
-mustard = '#af8700' # example
-color1 = '{{colors.primary_fixed_dim.default.hex}}'
-color2 = '{{colors.on_primary.default.hex}}'
-color3 = '{{colors.on_surface_variant.default.hex}}'
-color4 = '{{colors.surface_container.default.hex}}'
-color5 = '{{colors.on_primary.default.hex}}'
-color6 = '{{colors.surface_dim.default.hex}}'
-color7 = '{{colors.surface.default.hex}}'
-color8 = '{{colors.primary.default.hex}}'
-color9 = '{{colors.tertiary.default.hex}}'
+format = """
+[]({{colors.surface_container_high.default.hex}})\\
+$os\\
+$username\\
+[](bg:{{colors.primary.default.hex}} fg:{{colors.surface_container_high.default.hex}})\\
+$directory\\
+[](bg:{{colors.tertiary.default.hex}} fg:{{colors.primary.default.hex}})\\
+$time\\
+[](fg:{{colors.tertiary.default.hex}})
+$character"""
 
-# Prompt symbols 
-[character]
-success_symbol = "[🞈](color9 bold)"
-error_symbol = "[🞈](@{error})"
-vicmd_symbol = "[🞈](#f9e2af)"
+right_format = """$git_branch$git_status$cmd_duration"""
+
+[os]
+style = "bg:{{colors.surface_container_high.default.hex}} fg:{{colors.primary.default.hex}} bold"
+format = "[ $symbol]($style)"
+disabled = false
+
+[os.symbols]
+Arch = "󰣇 "
+CachyOS = "󰣇 "
+Linux = "󰣇 "
+
+[username]
+show_always = true
+style_user = "bg:{{colors.surface_container_high.default.hex}} fg:{{colors.on_surface.default.hex}} bold"
+style_root = "bg:{{colors.surface_container_high.default.hex}} fg:{{colors.error.default.hex}} bold"
+format = "[$user ]($style)"
+disabled = false
 
 [directory]
-format = "[](fg:color1 bg:color4)[󰉋](bg:color1 fg:color2)[ ](fg:color1 bg:color4)[$path ](fg:color3 bg:color4)[ ](fg:color4)"
+style = "bg:{{colors.primary.default.hex}} fg:{{colors.on_primary.default.hex}} bold"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -31,16 +44,33 @@ format = "[](fg:color1 bg:color4)[󰉋](bg:color1 fg:color2)[ ](fg:color1 
 "Music" = " "
 "Pictures" = " "
 
-[git_branch]
-format = "[](fg:color8 bg:color4)[ ](bg:color8 fg:color5)[](fg:color8 bg:color4)[(bg:color8 fg:color5) $branch](fg:color3 bg:color4)[](fg:color4) "
-
 [time]
-format = "[](fg:color8 bg:color4)[ ](bg:color8 fg:color5)[](fg:color8 bg:color4)[(bg:color8 fg:color5) $time](fg:color3 bg:color4)[](fg:color4) "
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"
+style = "bg:{{colors.tertiary.default.hex}} fg:{{colors.on_tertiary.default.hex}} bold"
+format = "[  $time ]($style)"
 
-[python]
-format = "[](fg:color8 bg:color4)[${symbol}${version}](bg:color8 fg:color5)[](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[](fg:color4) "
-symbol = '🐍'
-# pyenv_version_name = true
-pyenv_prefix = 'venv'
+[git_branch]
+symbol = " "
+style = "bold {{colors.primary.default.hex}}"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold {{colors.secondary.default.hex}}"
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+modified = "!"
+
+[cmd_duration]
+min_time = 2_000
+style = "bold {{colors.tertiary.default.hex}}"
+format = "[$duration]($style)"
+
+[character]
+success_symbol = "[❯](bold {{colors.primary.default.hex}}) "
+error_symbol = "[❯](bold {{colors.error.default.hex}}) "
+vimcmd_symbol = "[❮](bold {{colors.tertiary.default.hex}}) "

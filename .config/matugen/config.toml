@@ -289,12 +289,12 @@ post_hook   = '''
 #   ln -nfs "$HOME/.config/matugen/generated/zathura-colors" "$HOME/.config/zathura/zathurarc"
 # '''
 
-# [templates.starship]
-# input_path  = '~/.config/matugen/templates/starship-colors.toml'
-# output_path = '~/.config/matugen/generated/starship-colors.toml'
-# post_hook   = '''
-#   ln -nfs "$HOME/.config/matugen/generated/starship-colors.toml" "$HOME/.config/starship.toml"
-# '''
+[templates.starship]
+input_path  = '~/.config/matugen/templates/starship-colors.toml'
+output_path = '~/.config/matugen/generated/starship-colors.toml'
+post_hook   = '''
+  cp "$HOME/.config/matugen/generated/starship-colors.toml" "$HOME/.config/starship.toml"
+'''
 
 # [templates.tmux]
 # input_path  = '~/.config/matugen/templates/tmux-colors.conf'
