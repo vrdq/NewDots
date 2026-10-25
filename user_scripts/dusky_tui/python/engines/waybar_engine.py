@@ -226,6 +226,28 @@ class WaybarEngine(BaseEngine):
                 except OSError:
                     pass
 
+            # If systemd waybar.service is active, restart via systemctl to preserve supervision
+            if shutil.which("systemctl"):
+                try:
+                    res = subprocess.run(
+                        ["systemctl", "--user", "is-active", "--quiet", "waybar.service"],
+                        check=False,
+                        capture_output=True,
+                    )
+                    if res.returncode == 0:
+                        subprocess.run(
+                            ["systemctl", "--user", "restart", "waybar.service"],
+                            check=False,
+                            capture_output=True,
+                        )
+                        try:
+                            os.utime(self.config_root, None)
+                        except OSError:
+                            pass
+                        return
+                except OSError:
+                    pass
+
             # 1. Fast process termination via /proc scan and OS signals
             pids = _get_active_waybar_pids()
             for pid in pids:

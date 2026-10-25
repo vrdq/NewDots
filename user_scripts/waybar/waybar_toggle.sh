@@ -97,7 +97,7 @@ done
 
 # --- Core Functions ---
 is_running() {
-    pgrep -u "$UID" -x "${APP_NAME}" >/dev/null 2>&1
+    systemctl --user is-active --quiet "${APP_NAME}.service" 2>/dev/null || pgrep -u "$UID" -x "${APP_NAME}" >/dev/null 2>&1
 }
 
 start_waybar() {
@@ -108,7 +108,15 @@ start_waybar() {
 
     log_info "Starting ${APP_NAME}..."
 
-    # Method 1: Dusky Run (Custom System Launcher with OOM Score Elevation & Transient Scopes)
+    # Method 1: systemd user service (Persistent supervision & auto-restart on crash)
+    if [[ ${#WAYBAR_ARGS[@]} -eq 0 ]] && command -v systemctl >/dev/null 2>&1; then
+        if systemctl --user start "${APP_NAME}.service" 2>/dev/null; then
+            log_success "${APP_NAME} launched (${APP_NAME}.service)."
+            return 0
+        fi
+    fi
+
+    # Method 2: Dusky Run (Custom System Launcher with OOM Score Elevation & Transient Scopes)
     # 9>&- prevents the background process from inheriting the lock file descriptor
     if command -v dusky-run >/dev/null 2>&1; then
         if dusky-run "${APP_NAME}" "${WAYBAR_ARGS[@]}" 9>&- >/dev/null 2>&1 & then
@@ -117,7 +125,7 @@ start_waybar() {
         fi
     fi
 
-    # Method 2: systemd-run transient scope/unit (Zero-fork nanosecond naming)
+    # Method 3: systemd-run transient scope/unit (Zero-fork nanosecond naming)
     if command -v systemd-run >/dev/null 2>&1; then
         local ts="${EPOCHREALTIME//./}"
         local unit_name="${APP_NAME}-mgr-${ts:-$$}"
@@ -127,7 +135,7 @@ start_waybar() {
         fi
     fi
 
-    # Method 3: Fallback detached session via setsid
+    # Method 4: Fallback detached session via setsid
     (
         exec 9>&-
         unset XDG_ACTIVATION_TOKEN DESKTOP_STARTUP_ID
@@ -143,6 +151,12 @@ stop_waybar() {
     fi
 
     log_info "Shutting down ${APP_NAME}..."
+
+    # If managed by systemd, stop the service cleanly so Restart=always is not triggered
+    if command -v systemctl >/dev/null 2>&1 && systemctl --user is-active --quiet "${APP_NAME}.service" 2>/dev/null; then
+        systemctl --user stop "${APP_NAME}.service" 2>/dev/null || true
+    fi
+
     pkill -SIGTERM -u "$UID" -x "${APP_NAME}" >/dev/null 2>&1 || true
 
     # High-precision 50ms polling loop

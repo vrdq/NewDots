@@ -388,7 +388,7 @@
     "tray": {
         "icon-size": 14,
         "spacing": 4,
-        "show-passive-items": true
+        "show-passive-items": false
     },
 
     "custom/power": {
