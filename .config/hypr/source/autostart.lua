@@ -1,5 +1,8 @@
 hl.on("hyprland.start", function()
 
+    -- Sync X11 / XWayland root cursor & resources to Bibata-Modern-Classic
+    hl.exec_cmd("xrdb -merge $HOME/.Xresources && xsetroot -cursor_name left_ptr && hyprctl setcursor Bibata-Modern-Classic 24")
+
     -- --- Sync variables with D-Bus and Systemd ---
     -- exec_cmd is asynchronous: use one shell so imports finish before services start.
     -- A D-Bus update failure must not prevent startup after systemd's import succeeds.

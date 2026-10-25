@@ -6,6 +6,8 @@
 --
 -- Syntax:
 --   hl.on("hyprland.start", function()
+    -- Sync X11 / XWayland root cursor & resources to Bibata-Modern-Classic
+    hl.exec_cmd("xrdb -merge $HOME/.Xresources && xsetroot -cursor_name left_ptr && hyprctl setcursor Bibata-Modern-Classic 24")
 --       hl.exec_cmd("waybar")
 --       hl.exec_cmd("nm-applet")
 --   end)

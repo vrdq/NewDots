@@ -83,6 +83,7 @@ hl_env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl_env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 hl_env("XCURSOR_SIZE", "24")
 hl_env("HYPRCURSOR_SIZE", "24")
+hl_env("XCURSOR_PATH", HOME .. "/.icons:" .. HOME .. "/.local/share/icons:/usr/share/icons")
 hl_env("FREETYPE_PROPERTIES", "truetype:interpreter-version=40 cff:no-stem-darkening=0 type1:no-stem-darkening=0")
 
 -- 8. Apps / defaults
