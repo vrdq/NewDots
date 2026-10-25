@@ -2174,6 +2174,22 @@ load_matugen_fzf_theme() {
     export FZF_DEFAULT_OPTS="--color=$DUSKY_FZF_COLORS"
 }
 
+trigger_paste() {
+    [[ -n ${WAYLAND_DISPLAY:-} ]] || return 0
+    command -v wtype &>/dev/null || return 0
+    (
+        for _ in {1..25}; do
+            active_class=$(hyprctl activewindow -j 2>/dev/null | jq -r '.class // empty' 2>/dev/null)
+            if [[ -n "$active_class" && "$active_class" != "terminal_clipboard.sh" && "$active_class" != "foot" ]]; then
+                break
+            fi
+            sleep 0.02
+        done
+        sleep 0.08
+        wtype -M ctrl -k v -m ctrl 2>/dev/null || :
+    ) >/dev/null 2>&1 & disown
+}
+
 show_menu() {
     [[ -t 0 && -t 1 ]] || spawn_terminal
 
@@ -2328,7 +2344,12 @@ show_menu() {
     readarray -t lines <<<"$output"
     (( ${#lines[@]} )) || return 0
 
-    backend_command cmd_batch_copy "${lines[@]}"
+    local copy_status=0
+    backend_command cmd_batch_copy "${lines[@]}" || copy_status=$?
+    if (( copy_status == 0 )); then
+        trigger_paste
+    fi
+    return "$copy_status"
 }
 
 #==============================================================================

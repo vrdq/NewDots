@@ -500,9 +500,10 @@ end
 
 if use_terminal_clipboard then
     hl.bind("SUPER + V", function()
-        os.execute("pkill -15 -f '^foot.*terminal_clipboard'")
+        os.execute("pkill -15 -f '^foot.*terminal_clipboard' || pkill -15 -f '^kitty.*terminal_clipboard'")
+        local term_app = (os.execute("command -v foot >/dev/null 2>&1") == 0) and "foot --app-id=terminal_clipboard.sh" or "kitty --class=terminal_clipboard.sh"
         hl.dispatch(hl.dsp.exec_cmd(
-            "foot --app-id=terminal_clipboard.sh " ..
+            term_app .. " " ..
             "'" .. (os.getenv("HOME") .. "/user_scripts/clipboard/terminal_clipboard.sh"):gsub("'", "'\\''") .. "'"
         ))
     end, { description = "Clipboard History (Terminal)" })

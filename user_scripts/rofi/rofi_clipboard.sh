@@ -77,6 +77,22 @@ display_menu() {
     done <"$SESSION/items"
 }
 
+trigger_paste() {
+    [[ -n ${WAYLAND_DISPLAY:-} ]] || return 0
+    command -v wtype &>/dev/null || return 0
+    (
+        for _ in {1..25}; do
+            active_class=$(hyprctl activewindow -j 2>/dev/null | jq -r '.class // empty' 2>/dev/null)
+            if [[ -n "$active_class" && "$active_class" != "Rofi" && "$active_class" != "rofi" ]]; then
+                break
+            fi
+            sleep 0.02
+        done
+        sleep 0.08
+        wtype -M ctrl -k v -m ctrl 2>/dev/null || :
+    ) >/dev/null 2>&1 & disown
+}
+
 handle_selection() {
     local action="${ROFI_RETV:-0}" info="${ROFI_INFO:-}"
     local type="${info%%:*}" id="${info#*:}" context="${ROFI_DATA:-}" db='' generation=''
@@ -91,7 +107,11 @@ handle_selection() {
     fi
     case $type in pin|txt|img|bin) ;; *) display_menu; return ;; esac
     case $action in
-        1) "$MENU" --copy "$type" "$id" "$db" "$generation" ;;
+        1)
+            if "$MENU" --copy "$type" "$id" "$db" "$generation"; then
+                trigger_paste
+            fi
+            ;;
         10|11)
             printf '%s%s%s%s%s%s%s%s\n' "$SEP" "$type" "$SEP" "$id" "$SEP" "$db" "$SEP" "$generation" >"$SESSION/selection" || return 1
             if [[ $type == pin || ( $action == 10 && $type == txt ) ]]; then
