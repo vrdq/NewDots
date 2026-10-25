@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# Dynamic Theme-Aware cmatrix Wrapper
+# Dynamically inherits Material You accent/primary color from Matugen
+# ==============================================================================
+
+# Extract theme accent color if available
+THEME_JSON="${XDG_CONFIG_HOME:-$HOME/.config}/matugen/generated/dusky_tui.json"
+ACCENT=""
+
+if [[ -f "$THEME_JSON" ]] && command -v jq &>/dev/null; then
+    ACCENT=$(jq -r '.accent // empty' "$THEME_JSON" 2>/dev/null)
+fi
+
+# Fallback: extract color4 from kitty-colors.conf
+if [[ -z "$ACCENT" && -f "${XDG_CONFIG_HOME:-$HOME/.config}/kitty/kitty-colors.conf" ]]; then
+    ACCENT=$(grep -E '^\s*color4\s+' "${XDG_CONFIG_HOME:-$HOME/.config}/kitty/kitty-colors.conf" | head -n1 | awk '{print $2}')
+fi
+
+# Fallback default if completely unconfigured
+ACCENT="${ACCENT:-#ffb2be}"
+
+# If running interactively in a terminal, set dynamic OSC 4 palette and register cleanup trap
+if [[ -t 1 ]]; then
+    # Map ANSI colors 2 (green), 10 (bright green), 4 (blue), and 12 (bright blue) to the theme color
+    printf '\033]4;2;%s\033\\\033]4;10;%s\033\\\033]4;4;%s\033\\\033]4;12;%s\033\\' "$ACCENT" "$ACCENT" "$ACCENT" "$ACCENT"
+    # Reset modified palette slots on termination or exit
+    trap 'printf "\033]104;2;10;4;12\033\\"' EXIT INT TERM HUP
+fi
+
+# Detect if the user passed their own color or rainbow mode
+has_color=0
+for arg in "$@"; do
+    if [[ "$arg" == "-C" || "$arg" =~ ^-[a-zA-Z]*C || "$arg" == "-r" ]]; then
+        has_color=1
+        break
+    fi
+done
+
+if [[ $has_color -eq 0 ]]; then
+    /usr/bin/cmatrix -C blue "$@"
+else
+    /usr/bin/cmatrix "$@"
+fi
