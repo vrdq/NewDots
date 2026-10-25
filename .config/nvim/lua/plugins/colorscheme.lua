@@ -8,7 +8,7 @@ local function load_theme_palette()
     fg = "#dee3e5",
     muted = "#bfc8ca",
     primary = "#82d3e2",
-    green = "#8aac8b",
+    green = "#a6e3a1",
     orange = "#e2a45f",
     blue = "#82d3e2",
     red = "#ffb4ab",
