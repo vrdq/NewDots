@@ -22,7 +22,7 @@ export LC_NUMERIC=C
 # ▼ CONFIGURATION ▼
 # =============================================================================
 
-declare -r APP_TITLE="Dusky Matugen Presets"
+declare -r APP_TITLE="Theme Presets"
 declare -r APP_VERSION="v4.1.1"
 
 # --- State & Favorites Paths ---

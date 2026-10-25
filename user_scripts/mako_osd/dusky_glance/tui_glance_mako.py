@@ -30,7 +30,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "ini"                        
 TARGET_FILE = "~/.config/matugen/templates/mako.ini"      
-APP_TITLE = "Dusky Glance Config"                 
+APP_TITLE = "Glance Config"                 
 
 # =============================================================================
 # 2. UI & ENVIRONMENT BEHAVIOR

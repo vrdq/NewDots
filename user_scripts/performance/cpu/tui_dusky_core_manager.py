@@ -26,7 +26,7 @@ p_cores, e_cores, locked_cores = detect_topology()
 
 ENGINE_TYPE = "cpu_core"
 TARGET_FILE = "/sys/devices/system/cpu"
-APP_TITLE = "Dusky CPU Core Manager"
+APP_TITLE = "CPU Core Manager"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 REQUIRE_ROOT = True

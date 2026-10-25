@@ -31,7 +31,7 @@ declare -ri OFFLINE_CHECK_SEC=3
 declare -r LOCK_BASENAME="dusky_git_fetch.${UID}.lock"
 
 # TUI settings
-declare -r APP_TITLE="Dusky Updates"
+declare -r APP_TITLE="System Updates"
 declare -ri MAX_DISPLAY_ROWS=14
 declare -ri BOX_INNER_WIDTH=76
 declare -ri ITEM_PADDING=14

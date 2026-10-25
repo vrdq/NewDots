@@ -318,7 +318,7 @@ def atomic_write(path: Path, data: str | bytes) -> None:
 
 def notify(title: str, body: str, urgency: str = "low") -> None:
     if have("notify-send"):
-        run(["notify-send", "-a", "Dusky Cursor", "-h",
+        run(["notify-send", "-a", "Cursor Theme", "-h",
              f"string:x-canonical-private-synchronous:{NOTIFY_TAG}",
              "-u", urgency, "-t", "2500", title, body])
     elif in_hyprland() and have("hyprctl"):
@@ -1090,14 +1090,14 @@ def do_apply(args: argparse.Namespace, source_name: str) -> int:
     if theme != THEME_NAME:
         log.info("Cursor: applying stock theme %r @ %dpx (no build)", theme, size)
         if _locate_source(theme) is None:
-            notify("Dusky Cursor", f"Theme {theme!r} not found", "critical")
+            notify("Cursor Theme", f"Theme {theme!r} not found", "critical")
             return 1
         if args.dry_run:
             print(f"would apply stock theme {theme} @ {size}px (no build)")
             return 0
         cur_theme, cur_size = current_state()
         if not apply_all(theme, size, nudge=(cur_theme == theme and cur_size == size)):
-            notify("Dusky Cursor", f"{theme} partially applied (see {HOOK_LOG})", "critical")
+            notify("Cursor Theme", f"{theme} partially applied (see {HOOK_LOG})", "critical")
             return 1
         print(f"Applied {theme} cursor @ {size}px")
         return 0
@@ -1108,14 +1108,14 @@ def do_apply(args: argparse.Namespace, source_name: str) -> int:
 
     src_cursors = _locate_source(source_name)
     if src_cursors is None:
-        notify("Dusky Cursor", f"source theme {source_name} missing", "critical")
+        notify("Cursor Theme", f"source theme {source_name} missing", "critical")
         return 1
     try:
         entries = scan_cursors(src_cursors)
         source_digest = tree_digest(src_cursors, entries)
     except (OSError, ValueError) as e:
         log.error("Source theme unusable: %s", e)
-        notify("Dusky Cursor", f"source theme broken: {e}", "critical")
+        notify("Cursor Theme", f"source theme broken: {e}", "critical")
         return 1
 
     want = want_fingerprint(pal, source_name, source_digest)
@@ -1140,7 +1140,7 @@ def do_apply(args: argparse.Namespace, source_name: str) -> int:
             n_files, n_links = build_theme(src_cursors, entries, pal, source_name, source_digest)
         except (OSError, ValueError, AttributeError) as e:
             log.error("Build failed: %s", e)
-            notify("Dusky Cursor", f"build failed: {e}", "critical")
+            notify("Cursor Theme", f"build failed: {e}", "critical")
             return 1
         rebuilt = True
         log.info("Built %s: %d shapes + %d aliases in %.2fs", THEME_NAME, n_files, n_links,
@@ -1156,7 +1156,7 @@ def do_apply(args: argparse.Namespace, source_name: str) -> int:
         return 0
     # Hyprland early-returns on same name+size: nudge to force a reload of new pixels.
     if not apply_all(THEME_NAME, size, nudge=already):
-        notify("Dusky Cursor", f"{THEME_NAME} partially applied (see {HOOK_LOG})", "critical")
+        notify("Cursor Theme", f"{THEME_NAME} partially applied (see {HOOK_LOG})", "critical")
         return 1
     print(f"Applied {THEME_NAME} cursor @ {size}px")
     return 0
@@ -1165,7 +1165,7 @@ def do_apply(args: argparse.Namespace, source_name: str) -> int:
 def do_restore(args: argparse.Namespace, source_name: str) -> int:
     size = args.size or detect_size()
     if _locate_source(source_name) is None:
-        notify("Dusky Cursor", f"source theme {source_name} missing", "critical")
+        notify("Cursor Theme", f"source theme {source_name} missing", "critical")
         return 1
     if args.dry_run:
         print(f"would restore {source_name} @ {size}px (Dusky build left in place)")
@@ -1173,10 +1173,10 @@ def do_restore(args: argparse.Namespace, source_name: str) -> int:
     log.info("Restoring cursor -> %r @ %dpx", source_name, size)
     cur_theme, cur_size = current_state()
     if not apply_all(source_name, size, nudge=(cur_theme == source_name and cur_size == size)):
-        notify("Dusky Cursor", f"failed to restore {source_name}", "critical")
+        notify("Cursor Theme", f"failed to restore {source_name}", "critical")
         return 1
     set_conf_key("THEME", source_name)
-    notify("Dusky Cursor", f"Restored {source_name} ({size}px)")
+    notify("Cursor Theme", f"Restored {source_name} ({size}px)")
     print(f"Restored {source_name} cursor @ {size}px")
     return 0
 
@@ -1286,7 +1286,7 @@ def do_reset_colors(args: argparse.Namespace, source_name: str) -> int:
     args.base = args.border = args.accent = args.watch_bg = None
     args.theme = "Dusky"
     args.rebuild = True
-    notify("Dusky Cursor", "Reset colors to Matugen defaults")
+    notify("Cursor Theme", "Reset colors to Matugen defaults")
     return do_apply(args, source_name)
 
 

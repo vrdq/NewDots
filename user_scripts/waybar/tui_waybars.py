@@ -43,7 +43,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "waybar"                     
 TARGET_FILE = "~/.config/waybar" 
-APP_TITLE = "Dusky Waybars"               
+APP_TITLE = "Waybar Manager"               
 DEFAULT_MODE = "auto"                      
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 

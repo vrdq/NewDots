@@ -29,7 +29,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "lua"
 TARGET_FILE = "~/.config/hypr/edit_here/source/input.lua"
-APP_TITLE = "Dusky Input Configuration"
+APP_TITLE = "Input Configuration"
 
 # =============================================================================
 # 2. UI & ENVIRONMENT BEHAVIOR

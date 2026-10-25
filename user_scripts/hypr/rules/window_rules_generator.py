@@ -16,7 +16,7 @@ from typing import List, Dict, Optional, Any
 
 # --- Configuration ---
 TARGET_FILE = os.path.expanduser("~/.config/hypr/edit_here/source/window_rules.lua")
-APP_TITLE = "Dusky Window Rule Generator"
+APP_TITLE = "Window Rule Generator"
 APP_VERSION = "v5.3.0"
 
 @dataclass

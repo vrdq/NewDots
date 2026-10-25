@@ -32,7 +32,7 @@ from python.engines.ufw import UfwEngine
 ENGINE_TYPE = "ufw"
 TARGET_FILE = "/etc/default/ufw"
 REQUIRE_ROOT = True
-APP_TITLE = "Dusky Firewall"
+APP_TITLE = "Firewall Settings"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 ENABLE_USER_PRESETS = False

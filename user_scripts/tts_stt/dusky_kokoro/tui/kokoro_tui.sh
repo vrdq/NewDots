@@ -23,7 +23,7 @@ TRIGGER_SCRIPT="$(cd -- "$(dirname -- "$(realpath -- "${BASH_SOURCE[0]}")")/.." 
 declare -r TRIGGER_SCRIPT
 declare DAEMON_PID_FILE="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/dusky-kokoro/daemon.pid"
 
-declare -r APP_TITLE="Dusky Kokoro TTS Setup"
+declare -r APP_TITLE="Kokoro TTS Setup"
 declare -r APP_VERSION="v5.2.0"
 
 # Dimensions & Layout

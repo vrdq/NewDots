@@ -113,13 +113,13 @@ def notify(title: str, message: str, urgency: str = "normal") -> None:
                 env = os.environ.copy()
                 env["XDG_RUNTIME_DIR"] = runtime_dir
                 subprocess.run(
-                    ["sudo", "-u", user, "notify-send", "-a", "Dusky Swap Manager", "-u", urgency, title, message],
+                    ["sudo", "-u", user, "notify-send", "-a", "Swap Manager", "-u", urgency, title, message],
                     env=env,
                     check=False,
                     timeout=2
                 )
             else:
-                subprocess.run(["notify-send", "-a", "Dusky Swap Manager", "-u", urgency, title, message], check=False, timeout=2)
+                subprocess.run(["notify-send", "-a", "Swap Manager", "-u", urgency, title, message], check=False, timeout=2)
         except Exception:
             pass
 

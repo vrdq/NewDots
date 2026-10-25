@@ -33,7 +33,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "kokoro"
 TARGET_FILE = os.environ.get("DUSKY_CONFIG") or str(Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / "dusky-kokoro/config.toml")
-APP_TITLE = "Dusky Kokoro TTS"
+APP_TITLE = "Kokoro TTS"
 
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"

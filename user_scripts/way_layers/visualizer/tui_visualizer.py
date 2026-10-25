@@ -24,7 +24,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "json"
 TARGET_FILE = str(_CONFIG_ROOT / "dusky/settings/way_layers/visualizer/visualizer.json")
-APP_TITLE = "Dusky Visualizer"
+APP_TITLE = "Audio Visualizer"
 
 # =============================================================================
 # 2. UI & ENVIRONMENT BEHAVIOR

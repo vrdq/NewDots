@@ -30,7 +30,7 @@ export LC_NUMERIC=C
 # =============================================================================
 
 readonly CONFIG_ROOT="${HOME}/.config/waybar"
-readonly APP_TITLE="Dusky Waybar Manager"
+readonly APP_TITLE="Waybar Manager"
 readonly APP_VERSION="v4.8.1"
 
 readonly -a DUSKY_CMD=(dusky-run -- waybar)

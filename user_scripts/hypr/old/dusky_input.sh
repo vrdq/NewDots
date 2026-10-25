@@ -27,7 +27,7 @@ shopt -s extglob
 # =============================================================================
 
 declare -r CONFIG_FILE="${HOME}/.config/hypr/edit_here/source/input.conf"
-declare -r APP_TITLE="Dusky Input"
+declare -r APP_TITLE="Input Settings"
 declare -r APP_VERSION="v5.4.0 (Hardened)"
 
 # Dimensions & Layout

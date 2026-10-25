@@ -24,7 +24,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "locale_gen"
 TARGET_FILE = "/etc/locale.gen"
-APP_TITLE = "Dusky Locale Generator"
+APP_TITLE = "Locale Generator"
 REQUIRE_ROOT = True
 
 # =============================================================================

@@ -30,7 +30,7 @@ from python.engines.monitor_engine import (
 
 # --- TUI ROUTER CONFIGURATION ---
 ENGINE_TYPE = "monitor"
-APP_TITLE = "Dusky Monitor & Workspace Wizard"
+APP_TITLE = "Monitor & Workspace Wizard"
 DEFAULT_MODE = "batch"  # Batch mode prevents Wayland configuration tearing during live updates
 TARGET_FILE = "~/.config/hypr/edit_here/source/monitors.lua"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"

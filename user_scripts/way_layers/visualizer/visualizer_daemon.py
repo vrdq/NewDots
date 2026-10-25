@@ -81,7 +81,7 @@ def notify_user(title: str, body: str, urgency: str = "critical") -> None:
     if notify_bin:
         try:
             subprocess.run(
-                [notify_bin, "-u", urgency, "-a", "Dusky Visualizer", title, body],
+                [notify_bin, "-u", urgency, "-a", "Audio Visualizer", title, body],
                 check=False,
                 timeout=2,
                 stdout=subprocess.DEVNULL,
@@ -99,7 +99,7 @@ except ImportError:
     msg = "python-gobject is missing. Install with: sudo pacman -S python-gobject"
     sys.stderr.write(f"{msg}\n")
     sys.stderr.write(DEPENDENCY_HINT)
-    notify_user("Dusky Visualizer Error", msg)
+    notify_user("Audio Visualizer Error", msg)
     raise SystemExit(1)
 
 try:
@@ -111,7 +111,7 @@ except ValueError as exc:
     msg = f"GTK / Layer Shell typelib missing ({exc}). Install with: sudo pacman -S gtk3 gtk-layer-shell"
     sys.stderr.write(f"{msg}\n")
     sys.stderr.write(DEPENDENCY_HINT)
-    notify_user("Dusky Visualizer Error", msg)
+    notify_user("Audio Visualizer Error", msg)
     raise SystemExit(1)
 
 try:
@@ -120,7 +120,7 @@ except ImportError:
     msg = "python-cairo is missing. Install with: sudo pacman -S python-cairo"
     sys.stderr.write(f"{msg}\n")
     sys.stderr.write(DEPENDENCY_HINT)
-    notify_user("Dusky Visualizer Error", msg)
+    notify_user("Audio Visualizer Error", msg)
     raise SystemExit(1)
 
 try:
@@ -1881,7 +1881,7 @@ noise_reduction = {noise}
         if not self.cava_available or cava_path is None:
             msg = "cava package is missing. Install with: sudo pacman -S cava"
             self.log.error(msg)
-            notify_user("Dusky Visualizer Warning", msg, urgency="normal")
+            notify_user("Audio Visualizer Warning", msg, urgency="normal")
             return False
 
         if self.cava_restart_source is not None:
@@ -3099,7 +3099,7 @@ noise_reduction = {noise}
             if not HAS_OPENGL and self.config.gpu_acceleration and not force_cairo:
                 self.log.warning("python-opengl is missing. Falling back to Cairo CPU rendering.")
                 notify_user(
-                    "Dusky Visualizer Notice",
+                    "Audio Visualizer Notice",
                     "python-opengl is missing. GPU acceleration disabled, using Cairo CPU rendering. Install with: sudo pacman -S python-opengl",
                     urgency="normal",
                 )

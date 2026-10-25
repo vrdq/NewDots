@@ -21,7 +21,7 @@ if __name__ == "__main__":
 ENGINE_TYPE = "systemd"
 HIDE_MISSING_ITEMS = True
 TARGET_FILE = "/etc/systemd/system"
-APP_TITLE = "Dusky Service Manager"
+APP_TITLE = "Service Manager"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 ENABLE_USER_PRESETS = True

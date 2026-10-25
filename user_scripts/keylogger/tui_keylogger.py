@@ -49,7 +49,7 @@ def _maintenance_action(command: str) -> str:
 # =============================================================================
 ENGINE_TYPE = "json"
 TARGET_FILE = str(default_config_path())
-APP_TITLE = "Dusky Keylogger"
+APP_TITLE = "Keylogger"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 ENABLE_USER_PRESETS = True

@@ -15,7 +15,7 @@ shopt -s extglob
 # ▼ SYSTEM CONFIGURATION ▼
 # =============================================================================
 
-declare -r APP_TITLE="Dusky GSettings Manager"
+declare -r APP_TITLE="GSettings Manager"
 declare -r APP_VERSION="v2.2.1 (Stable)"
 
 # Dimensions & Layout

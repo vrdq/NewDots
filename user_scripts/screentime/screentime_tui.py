@@ -451,7 +451,7 @@ def run_fzf_explorer(range_key: str = "today") -> bool:
         "--marker=✔ ",
         "--layout=reverse",
         "--border=rounded",
-        f"--border-label= 󱎫 Dusky Screentime Explorer ({r_label}) [Alt+C: Copy Summary] ",
+        f"--border-label= 󱎫 Screen Time Explorer ({r_label}) [Alt+C: Copy Summary] ",
         "--border-label-pos=3",
         "--info=hidden",
         f"--header={visual_header}",
@@ -540,7 +540,7 @@ def _render_dashboard_layout_impl(
     period_tabs = _period_tabs(range_key, colors, console_width)
 
     header_text = Text(overflow="ellipsis", no_wrap=True)
-    header_text.append(" 󱎫 Dusky Screentime ", style=f"bold {accent}")
+    header_text.append(" 󱎫 Screen Time ", style=f"bold {accent}")
     header_text.append(f"({r_name})", style=f"bold {warning}")
     header_text.append("  Total: ", style=f"{fg}")
     header_text.append(f"{format_duration(total_time)}", style=f"bold {success}")

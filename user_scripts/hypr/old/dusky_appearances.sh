@@ -15,7 +15,7 @@ shopt -s extglob
 # =============================================================================
 
 declare -r CONFIG_FILE="${HOME}/.config/hypr/edit_here/source/appearance.conf"
-declare -r APP_TITLE="Dusky Appearances"
+declare -r APP_TITLE="Appearances"
 declare -r APP_VERSION="v7.8.0"
 
 # Dimensions & Layout

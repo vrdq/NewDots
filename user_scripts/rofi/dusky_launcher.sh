@@ -125,7 +125,7 @@ rofi -show combi \
      -combi-hide-mode-prefix true \
      -display-drun "󰀻 Apps" \
      -display-combi "󰜉 All" \
-     -display-Dusky "󰒓 Dusky" \
+     -display-Dusky "󰒓 System" \
      -drun-match-fields "name,generic,exec,categories,keywords" \
      -tokenize \
      -matching fuzzy \

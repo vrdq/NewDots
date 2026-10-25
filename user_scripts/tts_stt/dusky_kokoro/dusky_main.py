@@ -2207,7 +2207,7 @@ class Daemon:
         async def _run() -> None:
             with contextlib.suppress(Exception):
                 proc = await asyncio.create_subprocess_exec(
-                    "notify-send", "-a", "Dusky Kokoro", "-u", urgency, "-t", "5000",
+                    "notify-send", "-a", "Kokoro TTS", "-u", urgency, "-t", "5000",
                     "-h", "string:x-canonical-private-synchronous:dusky-kokoro", summary, body,
                     stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL,
                     env=self._player_env(env or {}))

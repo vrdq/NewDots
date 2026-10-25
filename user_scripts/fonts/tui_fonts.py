@@ -34,7 +34,7 @@ _CONFIG_HOME = Path(os.environ.get("XDG_CONFIG_HOME", ""))
 if not _CONFIG_HOME.is_absolute():
     _CONFIG_HOME = Path.home() / ".config"
 TARGET_FILE = str(_CONFIG_HOME / "fontconfig/conf.d/99-dusky-fonts.conf")
-APP_TITLE = "Dusky Fonts"
+APP_TITLE = "Font Manager"
 
 # =============================================================================
 # 2. UI & ENVIRONMENT BEHAVIOR

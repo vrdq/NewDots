@@ -23,7 +23,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "toml"
 TARGET_FILE = "~/.config/dusky/settings/dusky_keys/config.toml"
-APP_TITLE = "Dusky Keys"
+APP_TITLE = "Keybind OSD"
 
 # =============================================================================
 # 2. UI & ENVIRONMENT BEHAVIOR

@@ -12,7 +12,7 @@ readonly SYNC_ID="sys-osd"
 # 1. Dependency Validation
 for cmd in wpctl rofi notify-send awk; do
     if ! command -v "$cmd" &>/dev/null; then
-        notify-send -u critical "Dusky Audio" "Missing required dependency: $cmd"
+        notify-send -u critical "Audio" "Missing required dependency: $cmd"
         exit 1
     fi
 done
@@ -25,7 +25,7 @@ get_device_desc() {
     # Known virtual nodes - keep them clean and succinct
     case "$raw_name" in
         "ghelper-audio-sink"|"ghelper-audio-sink-out"|"dusky-audio-sink"|"dusky-audio-sink-out")
-            echo "Dusky Audio"
+            echo "Audio"
             return
             ;;
         "ghelper-audio"|"ghelper-audio-capture"|"dusky-audio"|"dusky-audio-capture")
@@ -107,7 +107,7 @@ menu_output() {
     ")
 
     if [[ ${#rofi_options[@]} -eq 0 ]]; then
-        notify-send -u critical "Dusky Audio" "No output devices found."
+        notify-send -u critical "Audio" "No output devices found."
         return 1
     fi
 
@@ -199,7 +199,7 @@ menu_input() {
     ")
 
     if [[ ${#rofi_options[@]} -eq 0 ]]; then
-        notify-send -u critical "Dusky Audio" "No input devices found."
+        notify-send -u critical "Audio" "No input devices found."
         return 1
     fi
 

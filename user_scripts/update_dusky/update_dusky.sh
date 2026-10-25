@@ -876,7 +876,7 @@ desktop_notify() {
     local body="${3:-}"
 
     if command -v notify-send &>/dev/null; then
-        timeout 3 notify-send --urgency="$urgency" --app-name="Dusky Updater" "$summary" "$body" \
+        timeout 3 notify-send --urgency="$urgency" --app-name="System Updater" "$summary" "$body" \
             >/dev/null 2>&1 || true
     fi
 }
@@ -4851,28 +4851,28 @@ cleanup() {
     print_summary
 
     if [[ "$INTERRUPTED" == true ]]; then
-        desktop_notify critical "Dusky Update" "Update interrupted (phase: ${FAILED_PHASE:-$failed_phase})"
+        desktop_notify critical "System Update" "Update interrupted (phase: ${FAILED_PHASE:-$failed_phase})"
         exit "$rc"
     elif ((${#HARD_FAILED_SCRIPTS[@]} > 0)); then
-        desktop_notify critical "Dusky Update" "${#HARD_FAILED_SCRIPTS[@]} required script(s) failed (phase: ${FAILED_PHASE:-$failed_phase})"
+        desktop_notify critical "System Update" "${#HARD_FAILED_SCRIPTS[@]} required script(s) failed (phase: ${FAILED_PHASE:-$failed_phase})"
         exit 1
     elif ((rc != 0)); then
-        desktop_notify critical "Dusky Update" "Update failed or interrupted (phase: ${FAILED_PHASE:-$failed_phase}, exit $rc)"
+        desktop_notify critical "System Update" "Update failed or interrupted (phase: ${FAILED_PHASE:-$failed_phase}, exit $rc)"
         exit "$rc"
     elif [[ "$SYNC_FAILED" == true ]]; then
-        desktop_notify critical "Dusky Update" "Sync phase failed (phase: ${FAILED_PHASE:-$failed_phase})"
+        desktop_notify critical "System Update" "Sync phase failed (phase: ${FAILED_PHASE:-$failed_phase})"
         exit 1
     elif (( ${#SKIPPED_SCRIPTS[@]} > 0 )); then
-        desktop_notify critical "Dusky Update" "${#SKIPPED_SCRIPTS[@]} required step(s) skipped (phase: ${FAILED_PHASE:-script execution}); incomplete"
+        desktop_notify critical "System Update" "${#SKIPPED_SCRIPTS[@]} required step(s) skipped (phase: ${FAILED_PHASE:-script execution}); incomplete"
         exit 1
     elif [[ "$OPT_DRY_RUN" == true ]]; then
-        desktop_notify normal "Dusky Update" "Dry-run preview complete"
+        desktop_notify normal "System Update" "Dry-run preview complete"
         exit 0
     elif [[ -n "$MERGE_DIR" && -d "$MERGE_DIR" ]] || ((${#SOFT_FAILED_SCRIPTS[@]} > 0)); then
-        desktop_notify normal "Dusky Update" "Update completed with warnings/manual-merge work outstanding; review logs"
+        desktop_notify normal "System Update" "Update completed with warnings/manual-merge work outstanding; review logs"
         exit 0
     else
-        desktop_notify normal "Dusky Update" "Update completed successfully"
+        desktop_notify normal "System Update" "Update completed successfully"
         exit 0
     fi
 }

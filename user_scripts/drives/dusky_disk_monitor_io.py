@@ -907,7 +907,7 @@ class ShortcutsScreen(ModalScreen[None]):
 
     def compose(self) -> ComposeResult:
         with Container(id="help_dialog"):
-            yield Static("󰌌 Dusky Disk Monitor Shortcuts", id="modal-title")
+            yield Static("󰌌 Disk Monitor Shortcuts", id="modal-title")
 
             text = Text()
             text.append("Drive Navigation (Vim & Keys)\n", style=f"bold {ACCENT}")
@@ -1107,7 +1107,7 @@ class IOMonitorApp(App):
         self.mounted_drives: set[str] = set()
 
     def compose(self) -> ComposeResult:
-        self.title = "Dusky Disk"
+        self.title = "Disk Monitor"
         with Horizontal(id="ram_bar"):
             yield Button("󰌌 F1", id="btn_help")
             yield Static(id="ram_txt")
@@ -1260,7 +1260,7 @@ class IOMonitorApp(App):
         dirty_col = WARNING if dirty > 500.0 else ACCENT
         ram_txt = Text.from_markup(
             f"[{LABEL_COL}]Dirty:[/] [bold {dirty_col}]{dirty:.1f} MB[/]    "
-            f"[bold {BG} on {SUCCESS}] Dusky Disk [/]    "
+            f"[bold {BG} on {SUCCESS}] Disk Monitor [/]    "
             f"[{LABEL_COL}]Writeback:[/] [bold {wb_col}]{wb:.1f} MB[/]"
         )
         try:

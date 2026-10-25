@@ -19,7 +19,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "shell_fallback"
 TARGET_FILE = "~/user_scripts/battery/notify/battery_notify.sh"
-APP_TITLE = "Dusky Battery"
+APP_TITLE = "Battery Monitor"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 
 # =============================================================================

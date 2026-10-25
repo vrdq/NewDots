@@ -25,7 +25,7 @@ from python.engines.matugen import MatugenEngine
 # =============================================================================
 ENGINE_TYPE = "matugen"
 TARGET_FILE = "~/.config/matugen/config.toml"
-APP_TITLE = "Dusky Matugen TUI"
+APP_TITLE = "Matugen Theme Settings"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 
 # =============================================================================

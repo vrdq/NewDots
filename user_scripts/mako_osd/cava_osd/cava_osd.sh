@@ -15,7 +15,7 @@ LOCK_HELD=false
 
 notify_user() {
     if command -v notify-send >/dev/null 2>&1; then
-        notify-send -u low -t 2000 --app-name="dusky-cava-alert" "Dusky Cava" "$1" || true
+        notify-send -u low -t 2000 --app-name="dusky-cava-alert" "Audio Visualizer" "$1" || true
     fi
 }
 

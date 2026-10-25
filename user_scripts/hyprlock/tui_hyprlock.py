@@ -33,7 +33,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "hyprlock"
 TARGET_FILE = "~/.config/hypr/hyprlock.conf"
-APP_TITLE = "Dusky Hyprlock"
+APP_TITLE = "Hyprlock Settings"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 

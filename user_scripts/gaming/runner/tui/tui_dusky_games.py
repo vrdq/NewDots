@@ -62,7 +62,7 @@ _GLOBAL_CONFIG = _GAMING_ROOT / "config.toml"
 ENGINE_TYPE = "toml"
 # Use tilde so Path.expanduser() resolves per-user dynamically.
 TARGET_FILE = "~/user_scripts/gaming/runner/config.toml"
-APP_TITLE = "Dusky Games — Master Runner"
+APP_TITLE = "Games Manager"
 
 # =============================================================================
 # 2. UI & ENVIRONMENT BEHAVIOR

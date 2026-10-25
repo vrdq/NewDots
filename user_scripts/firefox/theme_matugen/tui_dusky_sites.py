@@ -27,7 +27,7 @@ from python.engines.dusky_sites import DuskySitesEngine
 # =============================================================================
 ENGINE_TYPE = "dusky_sites"
 TARGET_FILE = "~/.config/dusky/settings/dusky_sites/config.json"
-APP_TITLE = "Dusky Sites"
+APP_TITLE = "Theme Sites"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 

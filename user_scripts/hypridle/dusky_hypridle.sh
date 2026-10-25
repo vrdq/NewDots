@@ -40,7 +40,7 @@ export LC_NUMERIC=C
 
 : "${XDG_CONFIG_HOME:=${HOME}/.config}"
 declare CONFIG_FILE="${DUSKY_CONFIG_FILE:-${XDG_CONFIG_HOME}/hypr/hypridle.conf}"
-declare -r APP_TITLE="Dusky Hypridle"
+declare -r APP_TITLE="Idle Settings"
 declare -r APP_VERSION="v4.0.0"
 
 # Dimensions & layout.

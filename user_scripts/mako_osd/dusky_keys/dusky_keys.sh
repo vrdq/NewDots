@@ -58,7 +58,7 @@ notify_user() {
     if command -v notify-send >/dev/null 2>&1; then
         # 2>/dev/null: without a notification daemon (e.g. running from a TTY)
         # notify-send spews a GDBus NameHasNoOwner error into the console.
-        notify-send -u critical -t 5000 --app-name="dusky-keys" "Dusky Keys" "$1" 2>/dev/null || true
+        notify-send -u critical -t 5000 --app-name="dusky-keys" "Keybinds" "$1" 2>/dev/null || true
     fi
 }
 
@@ -76,7 +76,7 @@ acquire_lock() {
             rm -f "$PID_FILE" 2>/dev/null || true
         fi
         if command -v notify-send >/dev/null 2>&1; then
-            notify-send -u low -t 2000 --app-name="dusky-keys" "Dusky Keys" "Visualizer Disabled" || true
+            notify-send -u low -t 2000 --app-name="dusky-keys" "Keybinds" "Visualizer Disabled" || true
         fi
         exit 0
     fi
@@ -593,7 +593,7 @@ echo "$RUNNER_CHILD_PID" > "$PID_FILE"
 
 # Send notification that engine is enabled
 if command -v notify-send >/dev/null 2>&1; then
-    notify-send -u low -t 2000 --app-name="dusky-keys" "Dusky Keys" "Visualizer Enabled" || true
+    notify-send -u low -t 2000 --app-name="dusky-keys" "Keybinds" "Visualizer Enabled" || true
 fi
 
 wait "$RUNNER_CHILD_PID"

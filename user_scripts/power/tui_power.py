@@ -27,7 +27,7 @@ from python.frontend.core_types import ConfigItem
 # =============================================================================
 ENGINE_TYPE = "systemd_power"
 TARGET_FILE = "/etc/systemd/logind.conf.d/99-power.conf"
-APP_TITLE = "Dusky Power Manager"
+APP_TITLE = "Power Manager"
 REQUIRE_ROOT = True
 
 # =============================================================================

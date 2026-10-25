@@ -11,7 +11,7 @@ from python.frontend.core_types import ConfigItem
 
 ENGINE_TYPE = "network"
 TARGET_FILE = "~/.cache/dusky_tui/wifi_cache.json"
-APP_TITLE = "Dusky Network Manager"
+APP_TITLE = "Network Manager"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 ENABLE_USER_PRESETS = False

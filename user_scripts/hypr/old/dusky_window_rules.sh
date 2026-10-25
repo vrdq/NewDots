@@ -11,7 +11,7 @@ export LC_NUMERIC=C
 
 # --- Configuration ---
 declare -r TARGET_FILE="${HOME}/.config/hypr/edit_here/source/window_rules.conf"
-declare -r APP_TITLE="Dusky Window Rule Generator"
+declare -r APP_TITLE="Window Rule Generator"
 declare -r APP_VERSION="v4.5 (Engine v3.9.1)"
 
 # Dimensions

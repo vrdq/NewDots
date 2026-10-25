@@ -13,7 +13,7 @@ from python.engines.fstab import FstabEngine, NEW_ENTRY
 
 ENGINE_TYPE = "fstab"
 TARGET_FILE = "/etc/fstab"
-APP_TITLE = "Dusky FSTAB Orchestrator"
+APP_TITLE = "FSTAB Orchestrator"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 REQUIRE_ROOT = True

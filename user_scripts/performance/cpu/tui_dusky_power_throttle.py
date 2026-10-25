@@ -55,7 +55,7 @@ pl2_time_def = pl2_time_raw / 1_000_000 if pl2_time_raw is not None else 0.0
 
 ENGINE_TYPE = "pkg_throttle"
 TARGET_FILE = "/sys/class/powercap"
-APP_TITLE = "Dusky Power Limit Manager"
+APP_TITLE = "Power Limit Manager"
 DEFAULT_MODE = "auto"
 THEME_FILE = "~/.config/matugen/generated/dusky_tui.json"
 REQUIRE_ROOT = True

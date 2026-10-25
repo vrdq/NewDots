@@ -708,7 +708,7 @@ class RecordingSession:
             # silence, which reads as "the keybind is broken". Say so.
             if self.config.get("notifications", True):
                 try:
-                    subprocess.run(["notify-send", "-a", "Dusky STT", "-t", "2500",
+                    subprocess.run(["notify-send", "-a", "Voice Dictation", "-t", "2500",
                                     "Nothing transcribed", "No speech detected — try again, speaking clearly."],
                                    check=False, timeout=5)
                 except (OSError, subprocess.SubprocessError) as exc:
@@ -738,7 +738,7 @@ class RecordingSession:
             LOG.warning("Clipboard failed; transcript saved: %s", exc)
         if self.config.get("notifications", True):
             try:
-                subprocess.run(["notify-send", "-a", "Dusky STT", "-t", "3500",
+                subprocess.run(["notify-send", "-a", "Voice Dictation", "-t", "3500",
                                 ("Transcript saved · " + ", ".join(output_errors)) if output_errors else
                                 "Transcription complete" if complete else "Partial transcription",
                                 final_text[:220]], check=False, timeout=5)
@@ -1298,7 +1298,7 @@ class DuskyDaemon:
             LOG.error("Session failed: %s", exc)
             if self.config.get("notifications", True):
                 try:
-                    subprocess.run(["notify-send", "-a", "Dusky STT", "-t", "5000",
+                    subprocess.run(["notify-send", "-a", "Voice Dictation", "-t", "5000",
                                     "Capture failed", str(exc)[:220]], check=False, timeout=5)
                 except (OSError, subprocess.SubprocessError):
                     pass

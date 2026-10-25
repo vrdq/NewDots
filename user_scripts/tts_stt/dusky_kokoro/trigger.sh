@@ -62,7 +62,7 @@ die() {
 notify() {  # summary body urgency
     [[ "$NOTIFY" == 1 ]] || return 0
     have notify-send || return 0
-    notify-send -a "Dusky Kokoro" -u "$3" -t 2500 \
+    notify-send -a "Kokoro TTS" -u "$3" -t 2500 \
         -h string:x-canonical-private-synchronous:dusky-kokoro "$1" "$2" >/dev/null 2>&1 || true
 }
 
