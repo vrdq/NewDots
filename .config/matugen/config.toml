@@ -245,6 +245,11 @@ post_hook   = '''
   pkill -SIGUSR1 -x kitty || :
 '''
 
+[templates.antigravity]
+input_path  = '~/.config/matugen/templates/antigravity.json'
+output_path = '~/.config/matugen/generated/antigravity.json'
+post_hook   = 'python3 "$HOME/user_scripts/theme_matugen/sync_antigravity.py"'
+
 # [templates.vscode]
 # input_path  = '~/.config/matugen/templates/vscode.json'
 # output_path = '~/.config/matugen/generated/vscode.json'
