@@ -1,7 +1,7 @@
 hl.on("hyprland.start", function()
 
     -- Sync X11 / XWayland root cursor & resources to Bibata-Modern-Classic
-    hl.exec_cmd("xrdb -merge $HOME/.Xresources && xsetroot -cursor_name left_ptr && hyprctl setcursor Bibata-Modern-Classic 24")
+    hl.exec_cmd("sh -c 'for i in $(seq 1 30); do [ -S \"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket.sock\" ] && break; sleep 0.1; done; hyprctl setcursor Bibata-Modern-Classic 24; xrdb -merge \"$HOME/.Xresources\"; command -v xsetroot >/dev/null && xsetroot -cursor_name left_ptr'")
 
     -- --- Sync variables with D-Bus and Systemd ---
     -- exec_cmd is asynchronous: use one shell so imports finish before services start.
