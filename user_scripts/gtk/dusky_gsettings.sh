@@ -184,13 +184,29 @@ post_write_action() {
         fi
     fi
 
-    # 2. Update default index.theme (Wayland/Older Spec fallback)
+    # 2. Update default index.theme and cursors symlinks (Wayland/XWayland fallback)
     if [[ -n "$c_theme" ]]; then
-        mkdir -p ~/.icons/default
+        mkdir -p ~/.icons/default ~/.local/share/icons/default
         cat > ~/.icons/default/index.theme <<EOF
 [Icon Theme]
 Inherits=${c_theme}
 EOF
+        cat > ~/.local/share/icons/default/index.theme <<EOF
+[Icon Theme]
+Inherits=${c_theme}
+EOF
+        local cur_target=""
+        if [[ -d "$HOME/.local/share/icons/$c_theme/cursors" ]]; then
+            cur_target="$HOME/.local/share/icons/$c_theme/cursors"
+        elif [[ -d "$HOME/.icons/$c_theme/cursors" ]]; then
+            cur_target="$HOME/.icons/$c_theme/cursors"
+        elif [[ -d "/usr/share/icons/$c_theme/cursors" ]]; then
+            cur_target="/usr/share/icons/$c_theme/cursors"
+        fi
+        if [[ -n "$cur_target" ]]; then
+            ln -sfn "$cur_target" ~/.icons/default/cursors
+            ln -sfn "$cur_target" ~/.local/share/icons/default/cursors
+        fi
     fi
 
     # 3. Update Xresources for XWayland application cursor syncing

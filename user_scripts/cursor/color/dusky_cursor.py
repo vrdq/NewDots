@@ -1010,26 +1010,116 @@ def persist_lua_env(theme: str, size: int) -> bool:
 
 
 def update_default_index(theme: str) -> bool:
-    """Point icons/default at *theme*; rewrite only the Inherits= line."""
+    """Point icons/default at *theme*; rewrite Inherits= and update cursors symlink."""
+    ok = True
+    default_dirs = [
+        DATA_HOME / "icons" / "default",
+        HOME / ".icons" / "default",
+    ]
+
+    target_cursors: Path | None = None
+    if theme == THEME_NAME:
+        cand = THEME_ROOT / "cursors"
+        if cand.is_dir():
+            target_cursors = cand
+    if target_cursors is None:
+        target_cursors = find_source_cursors(theme)
+
+    for default_dir in default_dirs:
+        try:
+            default_dir.mkdir(parents=True, exist_ok=True)
+            index_path = default_dir / "index.theme"
+            current = index_path.read_text(encoding="utf-8") if index_path.is_file() else ""
+            if not current.strip():
+                text = f"[Icon Theme]\nName=Default\nComment=Default Cursor Theme\nInherits={theme}\n"
+            else:
+                text, n = re.subn(r"(?m)^\s*Inherits\s*=.*$", f"Inherits={theme}", current, count=1)
+                if not n:
+                    text = current.rstrip("\n") + f"\nInherits={theme}\n"
+            if text != current:
+                atomic_write(index_path, text)
+                log.info("Default icon theme %s inherits -> %s", index_path, theme)
+        except OSError as e:
+            log.warning("Cannot write %s: %s", default_dir / "index.theme", e)
+            ok = False
+
+        if target_cursors is not None and target_cursors.is_dir():
+            cursors_link = default_dir / "cursors"
+            try:
+                if cursors_link.is_symlink():
+                    try:
+                        current_dest = Path(os.readlink(cursors_link))
+                        if not current_dest.is_absolute():
+                            current_dest = (cursors_link.parent / current_dest).resolve()
+                        else:
+                            current_dest = current_dest.resolve()
+                    except OSError:
+                        current_dest = None
+                    if current_dest != target_cursors.resolve():
+                        tmp_link = default_dir / f".cursors.tmp.{os.getpid()}"
+                        with contextlib.suppress(OSError):
+                            tmp_link.unlink()
+                        tmp_link.symlink_to(target_cursors)
+                        tmp_link.replace(cursors_link)
+                        log.info("Symlinked %s -> %s", cursors_link, target_cursors)
+                elif cursors_link.exists():
+                    if cursors_link.is_dir():
+                        shutil.rmtree(cursors_link)
+                    else:
+                        cursors_link.unlink()
+                    cursors_link.symlink_to(target_cursors)
+                    log.info("Replaced %s with symlink -> %s", cursors_link, target_cursors)
+                else:
+                    cursors_link.symlink_to(target_cursors)
+                    log.info("Created symlink %s -> %s", cursors_link, target_cursors)
+            except OSError as e:
+                log.warning("Cannot link %s -> %s: %s", cursors_link, target_cursors, e)
+                ok = False
+
+    return ok
+
+
+def update_xresources(theme: str, size: int) -> bool:
+    """Keep ~/.Xresources cursor settings in sync for X11/XWayland clients."""
+    path = HOME / ".Xresources"
     try:
-        current = DEFAULT_INDEX_THEME.read_text(encoding="utf-8") if DEFAULT_INDEX_THEME.is_file() else ""
+        current = path.read_text(encoding="utf-8") if path.is_file() else ""
     except OSError:
         current = ""
-    if not current.strip():
-        text = f"[Icon Theme]\nName=Default\nComment=Default Cursor Theme\nInherits={theme}\n"
-    else:
-        text, n = re.subn(r"(?m)^\s*Inherits\s*=.*$", f"Inherits={theme}", current, count=1)
-        if not n:
-            text = current.rstrip("\n") + f"\nInherits={theme}\n"
+    lines = [line for line in current.splitlines() if not line.startswith(("Xcursor.theme:", "Xcursor.size:"))]
+    lines.insert(0, f"Xcursor.size: {size}")
+    lines.insert(0, f"Xcursor.theme: {theme}")
+    text = "\n".join(lines).rstrip() + "\n"
     if text == current:
         return True
     try:
-        atomic_write(DEFAULT_INDEX_THEME, text)
-        log.info("Default icon theme inherits -> %s", theme)
+        atomic_write(path, text)
         return True
     except OSError as e:
-        log.warning("Cannot write %s: %s", DEFAULT_INDEX_THEME, e)
+        log.warning("Cannot write %s: %s", path, e)
         return False
+
+
+def apply_xrdb(theme: str, size: int) -> bool:
+    """Sync cursor theme and size to X11 resource database and root window."""
+    update_xresources(theme, size)
+    if not have("xrdb") or not os.environ.get("DISPLAY"):
+        return True
+    try:
+        data = f"Xcursor.theme: {theme}\nXcursor.size: {size}\n"
+        r = subprocess.run(["xrdb", "-merge"], input=data, text=True, capture_output=True, check=False)
+        if r.returncode != 0:
+            log.warning("xrdb -merge failed (rc=%d): %s", r.returncode, r.stderr.strip()[:200])
+            return False
+        log.info("xrdb merged -> theme=%s size=%d", theme, size)
+    except OSError as e:
+        log.warning("Cannot execute xrdb: %s", e)
+        return False
+
+    if have("xsetroot"):
+        with contextlib.suppress(OSError):
+            subprocess.run(["xsetroot", "-cursor_name", "left_ptr"], capture_output=True, check=False)
+    return True
 
 
 def update_gtk_settings(theme: str, size: int) -> bool:
@@ -1065,7 +1155,8 @@ def apply_all(theme: str, size: int, nudge: bool) -> bool:
     ok_persist = persist_lua_env(theme, size)
     ok_default = update_default_index(theme)
     ok_gtk = update_gtk_settings(theme, size)
-    return all((ok_compositor, ok_settings, ok_environment, ok_persist, ok_default, ok_gtk))
+    ok_xrdb = apply_xrdb(theme, size)
+    return all((ok_compositor, ok_settings, ok_environment, ok_persist, ok_default, ok_gtk, ok_xrdb))
 
 
 # ---------------------------------------------------------------------------
