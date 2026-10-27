@@ -3,20 +3,20 @@
 add_newline = false
 
 format = """
-[](#262b26)\
+[](#262b2e)\
 $os\
 $username\
-[](bg:#99d4a3 fg:#262b26)\
+[](bg:#8dcff1 fg:#262b2e)\
 $directory\
-[](bg:#a2ced8 fg:#99d4a3)\
+[](bg:#262b2e fg:#8dcff1)\
 $time\
-[](fg:#a2ced8)
+[](fg:#262b2e)
 $character"""
 
 right_format = """$git_branch$git_status$cmd_duration"""
 
 [os]
-style = "bg:#262b26 fg:#99d4a3 bold"
+style = "bg:#262b2e fg:#8dcff1 bold"
 format = "[ $symbol]($style)"
 disabled = false
 
@@ -27,13 +27,13 @@ Linux = "󰣇 "
 
 [username]
 show_always = true
-style_user = "bg:#262b26 fg:#dfe4dc bold"
-style_root = "bg:#262b26 fg:#ffb4ab bold"
+style_user = "bg:#262b2e fg:#dfe3e7 bold"
+style_root = "bg:#262b2e fg:#ffb4ab bold"
 format = "[$user ]($style)"
 disabled = false
 
 [directory]
-style = "bg:#99d4a3 fg:#003918 bold"
+style = "bg:#8dcff1 fg:#003548 bold"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -47,16 +47,16 @@ truncation_symbol = "…/"
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:#a2ced8 fg:#01363e bold"
+style = "bg:#262b2e fg:#dfe3e7 bold"
 format = "[  $time ]($style)"
 
 [git_branch]
 symbol = " "
-style = "bold #99d4a3"
+style = "bold #8dcff1"
 format = "[$symbol$branch]($style) "
 
 [git_status]
-style = "bold #b7ccb7"
+style = "bold #b5cad7"
 format = "([$all_status$ahead_behind]($style) )"
 conflicted = "="
 ahead = "⇡${count}"
@@ -67,10 +67,10 @@ modified = "!"
 
 [cmd_duration]
 min_time = 2_000
-style = "bold #a2ced8"
+style = "bold #b5cad7"
 format = "[$duration]($style)"
 
 [character]
-success_symbol = "[❯](bold #99d4a3) "
+success_symbol = "[❯](bold #8dcff1) "
 error_symbol = "[❯](bold #ffb4ab) "
-vimcmd_symbol = "[❮](bold #a2ced8) "
+vimcmd_symbol = "[❮](bold #b5cad7) "

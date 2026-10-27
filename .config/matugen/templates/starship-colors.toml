@@ -8,9 +8,9 @@ $os\\
 $username\\
 [](bg:{{colors.primary.default.hex}} fg:{{colors.surface_container_high.default.hex}})\\
 $directory\\
-[](bg:{{colors.tertiary.default.hex}} fg:{{colors.primary.default.hex}})\\
+[](bg:{{colors.surface_container_high.default.hex}} fg:{{colors.primary.default.hex}})\\
 $time\\
-[](fg:{{colors.tertiary.default.hex}})
+[](fg:{{colors.surface_container_high.default.hex}})
 $character"""
 
 right_format = """$git_branch$git_status$cmd_duration"""
@@ -47,7 +47,7 @@ truncation_symbol = "…/"
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:{{colors.tertiary.default.hex}} fg:{{colors.on_tertiary.default.hex}} bold"
+style = "bg:{{colors.surface_container_high.default.hex}} fg:{{colors.on_surface.default.hex}} bold"
 format = "[  $time ]($style)"
 
 [git_branch]
@@ -67,10 +67,10 @@ modified = "!"
 
 [cmd_duration]
 min_time = 2_000
-style = "bold {{colors.tertiary.default.hex}}"
+style = "bold {{colors.secondary.default.hex}}"
 format = "[$duration]($style)"
 
 [character]
 success_symbol = "[❯](bold {{colors.primary.default.hex}}) "
 error_symbol = "[❯](bold {{colors.error.default.hex}}) "
-vimcmd_symbol = "[❮](bold {{colors.tertiary.default.hex}}) "
+vimcmd_symbol = "[❮](bold {{colors.secondary.default.hex}}) "
