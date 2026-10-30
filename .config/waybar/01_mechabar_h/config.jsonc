@@ -117,7 +117,7 @@
 		"format-off": "󰂲",
 		"format-on": "󰂰",
 		"format-connected": "󰂱",
-		"on-click": "dusky-run blueman-manager",
+		"on-click": "kitty --class bluetui -e bluetui",
 		"on-click-right": "dusky-run kitty --class bluetui -e bluetui",
 		"tooltip-format": "Device Addr: {device_address}",
 		"tooltip-format-disabled": "Bluetooth Disabled",
@@ -284,7 +284,7 @@
 
 /*  "custom/mpris-trigger": {
         "format": "♪",
-        "on-click": "dusky-run pavucontrol",
+        "on-click": "kitty --class pulsemixer -e pulsemixer",
         "tooltip": false
     },*/
 
@@ -335,7 +335,7 @@
 			"headset": "󰋎",
 			"headset-muted": "󰋐"
 		},
-		"on-click": "dusky-run pavucontrol",
+		"on-click": "kitty --class pulsemixer -e pulsemixer",
 		"on-click-right": "dusky-run kitty --class cava -e cava",
 		"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",

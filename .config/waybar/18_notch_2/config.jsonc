@@ -132,7 +132,7 @@
             "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
             "tooltip-format-enumerate-connected": "󰂱 {device_alias}",
             "tooltip-format-enumerate-connected-battery": "󰂱 {device_alias} ({device_battery_percentage}%)",
-            "on-click": "dusky-run blueman-manager",
+            "on-click": "kitty --class bluetui -e bluetui",
             "on-click-right": "dusky-run kitty --class bluetui -e bluetui"
         },
 
@@ -151,7 +151,7 @@
             },
             "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
             "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
-            "on-click": "pavucontrol",
+            "on-click": "kitty --class pulsemixer -e pulsemixer",
             "ignored-sinks": [
                 "Easy Effects Sink"
             ]

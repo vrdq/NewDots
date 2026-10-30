@@ -186,12 +186,12 @@
     "format-off": "󰂲",
     "format-connected": "󰂱",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "dusky-run blueman-manager",
+    "on-click": "kitty --class bluetui -e bluetui",
     "on-click-right": "dusky-run kitty --class bluetui -e bluetui"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "on-click": "dusky-run pavucontrol",
+    "on-click": "kitty --class pulsemixer -e pulsemixer",
     "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,

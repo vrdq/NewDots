@@ -150,14 +150,14 @@ cond_bind(
 
 cond_bind(
     "ALT + 2",
-    hl.dsp.exec_cmd("blueman-manager"),
-    { description = "Bluetooth Manager" }
+    hl.dsp.exec_cmd(terminal .. " --class bluetui -e bluetui"),
+    { description = "Bluetooth Manager (TUI)" }
 )
 
 cond_bind(
     "ALT + 3",
-    hl.dsp.exec_cmd("pavucontrol"),
-    { description = "Audio Mixer" }
+    hl.dsp.exec_cmd(terminal .. " --class pulsemixer -e pulsemixer"),
+    { description = "Audio Mixer (TUI)" }
 )
 
 -- alt + 4 and ctrl space to open Dusky Papers

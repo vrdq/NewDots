@@ -285,7 +285,7 @@
     "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "󰂱 {device_alias}",
     "tooltip-format-enumerate-connected-battery": "󰂱 {device_alias} ({device_battery_percentage}%)",
-    "on-click": "dusky-run blueman-manager",
+    "on-click": "kitty --class bluetui -e bluetui",
     "on-click-right": "dusky-run kitty --class bluetui -e bluetui"
   },
 
@@ -303,7 +303,7 @@
       "car": "",
       "default": ["󰕿", "󰖀", "󰕾"]
     },
-    "on-click": "dusky-run pavucontrol",
+    "on-click": "kitty --class pulsemixer -e pulsemixer",
     "on-click-right": "dusky-run kitty --class cava -e cava",
     "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",

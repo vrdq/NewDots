@@ -105,7 +105,7 @@
             "align": 0.5,
             "format": "{icon}\n{volume}",
             "format-muted": "󰖁",
-            "on-click": "dusky-run pavucontrol",
+            "on-click": "kitty --class pulsemixer -e pulsemixer",
             "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
             "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
             "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
@@ -173,7 +173,7 @@
             "format-disabled": "󰂲",
             "format-connected": "",
             "tooltip-format": "Devices connected: {num_connections}",
-            "on-click": "dusky-run blueman-manager",
+            "on-click": "kitty --class bluetui -e bluetui",
             "on-click-right": "dusky-run kitty --class bluetui -e bluetui"
         },
 

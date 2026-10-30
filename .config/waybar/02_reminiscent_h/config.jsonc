@@ -231,7 +231,7 @@
         "format-connected": "󰂱 {num_connections}",
         "tooltip-format": "{controller_alias}\n{controller_address}",
         "tooltip-format-connected": "Connected: {num_connections}",
-        "on-click": "dusky-run blueman-manager",
+        "on-click": "kitty --class bluetui -e bluetui",
         "on-click-right": "dusky-run kitty --class bluetui -e bluetui"
     },
 
@@ -304,7 +304,7 @@
         "format": "{icon} {volume}%",
         "format-muted": "󰖁",
         "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
-        "on-click": "dusky-run pavucontrol",
+        "on-click": "kitty --class pulsemixer -e pulsemixer",
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
         "tooltip-format": "Volume: {volume}%\nLMB: Pavucontrol"

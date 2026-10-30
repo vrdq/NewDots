@@ -66,7 +66,7 @@ hl.window_rule({
 -- -----------------------------------------------------------------------------
 hl.window_rule({
     name = "blueman-manager-float",
-    match = { class = "^(blueman-manager|blueman-assistant|nm-connection-editor)$" },
+    match = { class = "^(blueman-manager|blueman-assistant|nm-connection-editor|bluetui)$" },
     float = true,
     center = true,
     size = {650, 450},
@@ -74,7 +74,7 @@ hl.window_rule({
 
 hl.window_rule({
     name = "pavucontrol-float",
-    match = { class = "^(org\\.pulseaudio\\.pavucontrol|pavucontrol)$" },
+    match = { class = "^(org\\.pulseaudio\\.pavucontrol|pavucontrol|pulsemixer)$" },
     float = true,
     center = true,
     size = {720, 500},

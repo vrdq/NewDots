@@ -150,7 +150,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "dusky-run pavucontrol",
+    "on-click": "kitty --class pulsemixer -e pulsemixer",
     "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,

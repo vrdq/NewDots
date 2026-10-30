@@ -163,7 +163,7 @@
         "format-muted": "󰝟",
         "tooltip-format": "{desc}\nVolume: {volume}%\n\n LMB  Pavucontrol\n MMB  Mute Toggle\n RMB  Cava",
         "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
-        "on-click": "dusky-run pavucontrol",
+        "on-click": "kitty --class pulsemixer -e pulsemixer",
         "on-click-right": "dusky-run kitty --class cava -e cava",
         "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",

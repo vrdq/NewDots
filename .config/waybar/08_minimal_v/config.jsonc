@@ -182,7 +182,7 @@
         "justify": "center",
         "format": "{icon}\n{volume}",
         "format-muted": "󰖁",
-        "on-click": "dusky-run pavucontrol",
+        "on-click": "kitty --class pulsemixer -e pulsemixer",
         "format-icons": ["", "", ""],
         "tooltip-format": "Volume: {volume}%"
     },
@@ -211,7 +211,7 @@
         "format-disabled": "󰂲",
         "format-connected": "",
         "tooltip-format": "Devices connected: {num_connections}",
-        "on-click": "dusky-run blueman-manager",
+        "on-click": "kitty --class bluetui -e bluetui",
         "on-click-right": "dusky-run kitty --class bluetui -e bluetui"
     },
 
