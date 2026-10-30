@@ -182,6 +182,12 @@ hl.bind(
 )
 
 cond_bind(
+    "ALT + 7",
+    hl.dsp.exec_cmd(dusky_scripts .. "theme_matugen/theme_ctl.sh refresh"),
+    { description = "Refresh Theme from Wallpaper" }
+)
+
+cond_bind(
     "ALT + 5",
     hl.dsp.exec_cmd(terminal .. " -e " .. dusky_scripts .. "drives/drive_manager/drive_manager.py unlock browser"),
     { description = "Unlock Browser" }
