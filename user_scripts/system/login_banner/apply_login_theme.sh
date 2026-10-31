@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# apply_login_theme.sh — Set up the VRDQ Delta Corps Priest greeter
+# apply_login_theme.sh — All-white minimal VRDQ login screen (tuigreet)
 # ==============================================================================
 set -euo pipefail
 
@@ -15,9 +15,9 @@ XKBLAYOUT=us
 FONT=ter-v28b
 EOF
 
-# 2. Update /etc/issue with the VRDQ Delta Corps Priest pixel banner
+# 2. Update /etc/issue with the all-white VRDQ pixel banner (no system/kernel/tty info)
 cat > /etc/issue << 'EOF'
-\e[1;32m
+\e[1;37m
      ▄█    █▄     ▄████████ ████████▄  ████████▄   
     ███    ███   ███    ███ ███   ▀███ ███    ███  
     ███    ███   ███    ███ ███    ███ ███    ███  
@@ -30,13 +30,13 @@ cat > /etc/issue << 'EOF'
 \e[0m
 EOF
 
-# 3. Configure /etc/greetd/config.toml with clean Omarchy-inspired tuigreet
+# 3. Configure /etc/greetd/config.toml (All-white, no date/time/battery/sessions/extra text)
 cat > /etc/greetd/config.toml << 'EOF'
 [terminal]
 vt = 1
 
 [default_session]
-command = "tuigreet --time --time-format '%A, %d %B %Y' --issue --remember --remember-session --asterisks --asterisks-char '•' --width 56 --container-padding 2 --theme 'border=green;title=lightgreen;prompt=green;action=lightgreen;button=darkgray;container=black;input=white' --cmd /usr/local/bin/wayland-session"
+command = "tuigreet --issue --remember --remember-session --asterisks --asterisks-char '•' --width 56 --container-padding 2 --theme 'border=white;title=white;prompt=white;action=white;button=black;container=black;input=white' --cmd /usr/local/bin/wayland-session"
 user = "greeter"
 EOF
 
@@ -45,4 +45,4 @@ if command -v /usr/lib/systemd/systemd-vconsole-setup &>/dev/null; then
     /usr/lib/systemd/systemd-vconsole-setup || true
 fi
 
-echo "Login screen configured successfully with VRDQ Delta Corps banner."
+echo "Login screen configured successfully: all-white minimal VRDQ greeter."
